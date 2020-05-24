@@ -1,28 +1,33 @@
 const moment = require('moment');
+moment.locale('zh-cn');
+
 module.exports = {
   base: '/my-blog/',
   title: '雨巷的博客',
   description: '雨巷的博客',
-  plugins: [
-    [
-      '@vuepress/last-updated', {
-        transformer: (timestamp, lang) => {
-          const moment = require('moment')
-          moment.locale('zh-cn')
-          return moment(timestamp).fromNow("LLLL")
-        }
+  plugins: {
+    '@vuepress/last-updated': {
+      transformer: timestamp => moment(timestamp).fromNow("LLLL")
+    },
+    '@vuepress/pwa': {
+      serviceWorker: true,
+      updatePopup: {
+        message: "发现新内容可用",
+        buttonText: "Refresh"
       }
-    ],
-    [
-      '@vuepress/pwa', {
-        serviceWorker: true,
-        updatePopup: {
-          message: "发现新内容可用",
-          buttonText: "Refresh"
-        }
-      }
-    ]
-  ],
+    },
+    '@vssue/vuepress-plugin-vssue': {
+      // 设置 `platform` 而不是 `api`
+      platform: 'github-v4',
+
+      // 其他的 Vssue 配置
+      owner: 'doctorFei',
+      repo: 'my-blog',
+      clientId: '43291a5cabcd5f226a33',
+      clientSecret: '8cc9fa1b23293b271d3846a43a87d4eb064a3f19',
+      autoCreateIssue: true
+    }
+  },
   head: [
     ['link', { rel: 'icon', href: '/assets/img/favicon.ico' }],
     ['meta', { name: 'author', content: '雨巷的博客' }],
