@@ -1,8 +1,8 @@
 ---
 home: true
 heroImage: /assets/img/logo.png
-heroText: 个人主页
-tagline: Hero 副标题
+heroText: 雨巷的博客
+tagline: 文档、博客
 actionText: 快速上手 →
 actionLink: /zh/guide/
 features:

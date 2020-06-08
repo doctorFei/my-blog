@@ -26,7 +26,19 @@ module.exports = {
       clientId: '43291a5cabcd5f226a33',
       clientSecret: '8cc9fa1b23293b271d3846a43a87d4eb064a3f19',
       autoCreateIssue: true
-    }
+    },
+    '@vuepress/medium-zoom': {
+      selector: 'img.zoom-custom',
+      // medium-zoom options here
+      // See: https://github.com/francoischalifour/medium-zoom#options
+      options: {
+        margin: 16
+      }
+    },
+    "vuepress-plugin-auto-sidebar": {
+      sidebarDepth: 2
+    },
+    '@vuepress/back-to-top': true
   },
   head: [
     ['link', { rel: 'icon', href: '/assets/img/favicon.ico' }],
@@ -45,14 +57,12 @@ module.exports = {
     logo: '/assets/img/logo.png',
     nav: [
       { text: '主页', link: '/' },
-      { text: 'deeplearn-admin', link: '/deeplearn-admin/' },
-      { text: 'External', link: 'https://google.com' },
+      { text: '组件库', link: '/deeplearn-admin/' },
       {
-        text: 'Languages',
-        ariaLabel: 'Language Menu',
+        text: '前端',
+        ariaLabel: '前端',
         items: [
-          { text: 'Chinese', link: '/language/chinese/' },
-          { text: 'Japanese', link: '/language/japanese/' }
+          { text: 'Vue', link: '/Vue/' }
         ]
       },
       {
@@ -72,14 +82,8 @@ module.exports = {
           }
 
         ]
-      }
-    ],
-    sidebar: {
-      '/deeplearn-admin/': [
-        '',
-        'common-tree',
-        'edit-tree'
-      ]
-    }
+      },
+      { text: 'GitHub', link: 'https://github.com/doctorFei' }
+    ]
   }
 }
