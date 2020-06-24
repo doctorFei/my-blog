@@ -1,5 +1,5 @@
 ---
-title: 三、为什么 Vue 中不要用 index 作为 key？（diff 算法详解）
+title: 三、为什么 Vue 中不要用 index 作为 key？
 ---
 
 # 为什么 Vue 中不要用 index 作为 key？（diff 算法详解）
@@ -9,7 +9,6 @@ title: 三、为什么 Vue 中不要用 index 作为 key？（diff 算法详解�
 Vue 中的 key 是用来做什么的？为什么不推荐使用 index 作为 key？常常听说这样的问题，本篇文章带你从原理来一探究竟。
 
 本文的结论对于性能的毁灭是针对列表子元素顺序被改变、或者子元素被删除的特殊情况，提前说明清楚。
-
 
 
 ## 示例

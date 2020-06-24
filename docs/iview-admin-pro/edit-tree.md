@@ -91,7 +91,7 @@ title: 目录树组件
 用途：自定义根目录，需按照一定结构传入。 注意：customRootData和rootPath只能设置一个
 
 ```javascript
-    [  
+  [  
 		{  
 		  title: "test",//必须  
 		  type: "folder",//必须  

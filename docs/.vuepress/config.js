@@ -57,7 +57,7 @@ module.exports = {
     logo: '/assets/img/logo.png',
     nav: [
       { text: '主页', link: '/' },
-      { text: '组件库', link: '/deeplearn-admin/' },
+      { text: '组件库', link: '/iview-admin-pro/' },
       {
         text: '前端',
         ariaLabel: '前端',
