@@ -1,5 +1,5 @@
 ---
-title: 一、Vue 中 slot 和 slot-scope 的原理
+title: Vue 中 slot 和 slot-scope 的原理
 ---
 
 ## **前言**
@@ -40,7 +40,7 @@ Vue 中的 `slot` 和 `slot-scope` 一直是一个进阶的概念，对于我们
 
 这可以大大简化我们的异步开发体验，原本我们要手动执行这个 `promise`，手动管理状态处理错误等等……
 
-而这一切强大的功能都得益于Vue 提供的 `slot-scope` 功能，它在封装的灵活性上甚至有点接近于 `Hook`，组件甚至可以完全不关心 `UI` 渲染，只帮助父组件管理一些 `状态`。
+而这一切强大的功能都得益于 Vue 提供的 `slot-scope` 功能，它在封装的灵活性上甚至有点接近于 `Hook`，组件甚至可以完全不关心 `UI` 渲染，只帮助父组件管理一些 `状态`。
 
 ## **类比 React**
 
@@ -116,13 +116,13 @@ with (this) {
     scopedSlots: _u([
       {
         key: "bar",
-        fn: function () {
+        fn: function() {
           return [_c("span", [_v("Hello")])];
         },
       },
       {
         key: "foo",
-        fn: function (prop) {
+        fn: function(prop) {
           return [_c("span", [_v(_s(prop.msg))])];
         },
       },
@@ -141,28 +141,27 @@ with (this) {
   <slot name="foo" v-bind="{ msg }"></slot>
 </div>
 <script>
-  new Vue({
-    name: "test",
-    data() {
-      return {
-        msg: "World",
-      };
-    },
-    mounted() {
-      // 一秒后更新
-      setTimeout(() => {
-        this.msg = "Changed";
-      }, 1000);
-    },
-  });
+new Vue({
+  name: "test",
+  data() {
+    return {
+      msg: "World",
+    };
+  },
+  mounted() {
+    // 一秒后更新
+    setTimeout(() => {
+      this.msg = "Changed";
+    }, 1000);
+  },
+});
 </script>
 ```
 
 那么 `template` 就会被编译为这样的函数：
 
 ```vue
-with (this) {
-  return _c("div", [_t("bar"), _t("foo", null, null, { msg })], 2);
+with (this) { return _c("div", [_t("bar"), _t("foo", null, null, { msg })], 2);
 }
 ```
 
@@ -171,21 +170,22 @@ with (this) {
 `_t` 也就是 `renderSlot`的别名，简化后的实现是这样的：
 
 ```javascript
-export function renderSlot (
+export function renderSlot(
   name: string,
   fallback: ?Array<VNode>,
   props: ?Object,
   bindObject: ?Object
 ): ?Array<VNode> {
   // 通过 name 拿到函数
-  const scopedSlotFn = this.$scopedSlots[name]
-  let nodes
-  if (scopedSlotFn) { // scoped slot
-    props = props || {}
+  const scopedSlotFn = this.$scopedSlots[name];
+  let nodes;
+  if (scopedSlotFn) {
+    // scoped slot
+    props = props || {};
     // 执行函数返回 vnode
-    nodes = scopedSlotFn(props) || fallback
+    nodes = scopedSlotFn(props) || fallback;
   }
-  return nodes
+  return nodes;
 }
 ```
 
@@ -219,36 +219,36 @@ with (this) {
   </template>
 </test>
 <script>
-  new Vue({
-    name: "App",
-    el: "#app",
-    mounted() {
-      setTimeout(() => {
-        this.msgInParent = "Changed";
-      }, 1000);
-    },
-    data() {
-      return {
-        msgInParent: "msgInParent",
-      };
-    },
-    components: {
-      test: {
-        name: "test",
-        data() {
-          return {
-            msg: "World",
-          };
-        },
-        template: `
+new Vue({
+  name: "App",
+  el: "#app",
+  mounted() {
+    setTimeout(() => {
+      this.msgInParent = "Changed";
+    }, 1000);
+  },
+  data() {
+    return {
+      msgInParent: "msgInParent",
+    };
+  },
+  components: {
+    test: {
+      name: "test",
+      data() {
+        return {
+          msg: "World",
+        };
+      },
+      template: `
           <div>
             <slot name="bar"></slot>
             <slot name="foo" v-bind="{ msg }"></slot>
           </div>
         `,
-      },
     },
-  });
+  },
+});
 </script>
 ```
 
@@ -261,46 +261,54 @@ with (this) {
   <template v-slot:bar v-if="show">
     <span>Hello</span>
   </template>
-</test>
+</test>;
 function render() {
-  with(this) {
-    return _c('test', {
-      scopedSlots: _u([(show) ? {
-        key: "bar",
-        fn: function () {
-          return [_c('span', [_v("Hello")])]
-        },
-        proxy: true
-      } : null], null, true)
-    })
+  with (this) {
+    return _c("test", {
+      scopedSlots: _u(
+        [
+          show
+            ? {
+                key: "bar",
+                fn: function() {
+                  return [_c("span", [_v("Hello")])];
+                },
+                proxy: true,
+              }
+            : null,
+        ],
+        null,
+        true
+      ),
+    });
   }
 }
 ```
 
 注意这里的 `_u` 内部直接是一个三元表达式，读取 `_u` 是发生在父组件的 `_render` 中，那么此时子组件是收集不到这个 `show` 的依赖的，所以说 `show` 的更新只会触发父组件的更新，那这种情况下子组件是怎么重新执行 `$scopedSlot` 函数并重渲染的呢？
 
-我们已经有了一定的前置知识：**Vue的更新粒度**[2]，知道 `Vue` 的组件不是`递归更新`的，但是 `slotScopes` 的函数执行是发生在子组件内的，父组件在更新的时候一定是有某种方式去通知子组件也进行更新。
+我们已经有了一定的前置知识：**Vue 的更新粒度**[2]，知道 `Vue` 的组件不是`递归更新`的，但是 `slotScopes` 的函数执行是发生在子组件内的，父组件在更新的时候一定是有某种方式去通知子组件也进行更新。
 
 其实这个过程就发生在父组件的重渲染的 `patchVnode`中，到了 `test` 组件的 `patch` 过程，进入了 `updateChildComponent` 这个函数后，会去检查它的 `slot` 是否是`稳定`的，显然 `v-if` 控制的 `slot` 是非常不稳定的。
 
 ```javascript
-  const newScopedSlots = parentVnode.data.scopedSlots
-  const oldScopedSlots = vm.$scopedSlots
-  const hasDynamicScopedSlot = !!(
-    (newScopedSlots && !newScopedSlots.$stable) ||
-    (oldScopedSlots !== emptyObject && !oldScopedSlots.$stable) ||
-    (newScopedSlots && vm.$scopedSlots.$key !== newScopedSlots.$key)
-  )
+const newScopedSlots = parentVnode.data.scopedSlots;
+const oldScopedSlots = vm.$scopedSlots;
+const hasDynamicScopedSlot = !!(
+  (newScopedSlots && !newScopedSlots.$stable) ||
+  (oldScopedSlots !== emptyObject && !oldScopedSlots.$stable) ||
+  (newScopedSlots && vm.$scopedSlots.$key !== newScopedSlots.$key)
+);
 
-  // Any static slot children from the parent may have changed during parent's
-  // update. Dynamic scoped slots may also have changed. In such cases, a forced
-  // update is necessary to ensure correctness.
-  const needsForceUpdate = !!hasDynamicScopedSlot
-  
-  if (needsForceUpdate) {
-    // 这里的 vm 对应 test 也就是子组件的实例，相当于触发了子组件强制渲染。
-    vm.$forceUpdate()
-  }
+// Any static slot children from the parent may have changed during parent's
+// update. Dynamic scoped slots may also have changed. In such cases, a forced
+// update is necessary to ensure correctness.
+const needsForceUpdate = !!hasDynamicScopedSlot;
+
+if (needsForceUpdate) {
+  // 这里的 vm 对应 test 也就是子组件的实例，相当于触发了子组件强制渲染。
+  vm.$forceUpdate();
+}
 ```
 
 这里有一些优化措施，并不是说只要有 `slotScope` 就会去触发子组件强制更新。
@@ -312,15 +320,14 @@ function render() {
 一路追寻这个逻辑，最终发现这个 `$stable` 是 `_u` 也就是 `resolveScopedSlots` 函数的第三个参数决定的，由于这个 `_u` 是由编译器生成 `render` 函数时生成的的，那么就到 `codegen` 的逻辑中去看：
 
 ```javascript
-  let needsForceUpdate = el.for || Object.keys(slots).some(key => {
-    const slot = slots[key]
+let needsForceUpdate =
+  el.for ||
+  Object.keys(slots).some((key) => {
+    const slot = slots[key];
     return (
-      slot.slotTargetDynamic ||
-      slot.if ||
-      slot.for ||
-      containsSlotChild(slot) // is passing down slot from parent which may be dynamic
-    )
-  })
+      slot.slotTargetDynamic || slot.if || slot.for || containsSlotChild(slot) // is passing down slot from parent which may be dynamic
+    );
+  });
 ```
 
 简单来说，就是用到了一些动态语法的情况下，就会通知子组件对这段 `scopedSlots` 进行强制更新。
@@ -335,12 +342,12 @@ function render() {
 
 ```javascript
 function hash(str) {
-  let hash = 5381
-  let i = str.length
-  while(i) {
-    hash = (hash * 33) ^ str.charCodeAt(--i)
+  let hash = 5381;
+  let i = str.length;
+  while (i) {
+    hash = (hash * 33) ^ str.charCodeAt(--i);
   }
-  return hash >>> 0
+  return hash >>> 0;
 }
 ```
 

@@ -20,75 +20,27 @@ title: 目录树组件
 
 5、可配置任意层级的新建文件夹功能
 
-
-
 ### 二、用法示例：
 
 详见：https://git.iflytek.com/pfwang2/deeplearntree
 
-### 三、子组件可传入参数：
+### 三、API：
 
-**show**
+Tree props
 
-类型：boolean
-
-用途：控制目录树组件的显示
-
-默认：false
-
-
-
-**isMultiple**
-
-类型：boolean
-
-用途：是否支持多选
-
-默认：false
-
-
-
-**pageSize**
-
-类型：number
-
-用途：每页加载数量
-
-默认：10
-
-
-
-**selectMode**
-
-类型：String
-
-用途：选择类型
-
-可选值：
-
-* fileOnly
-
-* dirOnly
-
-* all
-
-默认：all
-
-
-
-**rootPath**
-
-类型：String
-
-用途：根目录请求路径， 注意：customRootData和rootPath只能设置一个
-
-
+| 属性           | 说明                                                         | 类型    | 默认值                 |
+| -------------- | ------------------------------------------------------------ | ------- | ---------------------- |
+| show           | 控制目录树组件的显示                                         | Boolean | false                  |
+| isMultiple     | 是否支持多选                                                 | Boolean | false                  |
+| pageSize       | 每页加载数量                                                 | Number  | 10                     |
+| selectMode     | 选择类型                                                     | String  | fileOnly\|dirOnly\|all |
+| rootPath       | 根目录请求路径(根目录由http请求获取模式下使用)， 注意：customRootData和rootPath只能设置一个 | String  | null                   |
+| customRootData | 自定义根目录，需按照一定结构传入。 注意：customRootData和rootPath只能设置一个 | Array   | []                     |
+| displayNew     | 是否有新建功能                                               | Boolean | false                  |
+| disableNew     | 新建按钮是否置灰（在displayNew等于true时生效）               | Boolean | false                  |
+| creatNewFileFn | 新建文件夹封装函数，用于组件内部新增文件夹时调用             | Funtion |                        |
 
 **customRootData**
-
-类型：Array
-
-用途：自定义根目录，需按照一定结构传入。 注意：customRootData和rootPath只能设置一个
 
 ```javascript
   [  
@@ -119,27 +71,7 @@ title: 目录树组件
 	]
 ```
 
-**displayNew**
-
-类型：boolean
-
-用途：是否有新建功能
-
-默认：false
-
-**disableNew**
-
-类型：boolean
-
-用途：新建按钮是否置灰（在displayNew等于true时生效）
-
-默认：false
-
 **creatNewFileFn**
-
-类型：Function
-
-用途：新建文件夹封装函数，用于组件内部新增文件夹时调用
 
 ```javascript
     //@param path 创建的路径  
@@ -159,16 +91,19 @@ title: 目录树组件
       }  
     }
 ```
-### 四、父组件中监听子组件自定义事件并添加响事件的处理方法
+
+
+### 四、Tree events:
+
+| 事件名       | 说明                     | 返回值                                                       |
+| ------------ | ------------------------ | ------------------------------------------------------------ |
+| getSubPaths  | 当发起目录获取请求时触发 | nodeData 当前要请求的目录信息,分为两种情况：1、目录树展开，此时为要展开的节点数据；2、获取更多，这时为当前已展开的节点数据<br/>callback 回传给内部组件已获取数据的函数 |
+| selectChange | 选中时触发               | node:当前已点击  <br/>allSelect:所有已选择节点               |
+
+**getSubPaths**
 
 ```javascript
-    /**
-     * desc     当发起目录获取请求时触发
-     * 
-     * nodeData 当前要请求的目录信息,分为两种情况：1、目录树展开，此时为要展开的节点数据；2、获取更多，这时为当前已展开的节点数据
-     * callback 回传给内部组件已获取数据的函数
-     */
-    getSubPaths(nodeData, callback) {
+   getSubPaths(nodeData, callback) {
       //若需要定制某层级下的数据，则根据nodeData进行判断
       //模拟接口，返回值必须为如下结构
       setTimeout(() => {
@@ -198,14 +133,23 @@ title: 目录树组件
         callback(res);
       }, 1000);
     },
-    //node:当前已点击  
-    //allSelect:所有已选择节点  
-    selectChange(node, allSelect) {  
-      console.log(node, allSelect);  
-    }
+
+    
 ```
+**selectChange**
+
+```javascript
+selectChange(node, allSelect) {  
+    console.log(node, allSelect);  
+}
+```
+
+
+
 ### 五、插槽
 
 作用：在目录树底部添加需要的button等交互
+
+
 
 <Vssue :options="{ locale: 'zh' }"/>

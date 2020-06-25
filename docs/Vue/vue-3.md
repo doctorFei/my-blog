@@ -1,5 +1,5 @@
 ---
-title: 三、Vue 的生命周期之间到底做了什么事清
+title: Vue 的生命周期
 ---
 
 # Vue 的生命周期之间到底做了什么事清？（源码详解，带你从头梳理组件化流程）
@@ -21,8 +21,8 @@ title: 三、Vue 的生命周期之间到底做了什么事清
 从 `new Vue(options)` 开始作为入口，`Vue` 只是一个简单的构造函数，内部是这样的：
 
 ```javascript
-function Vue (options) {
-  this._init(options)
+function Vue(options) {
+  this._init(options);
 }
 ```
 
@@ -38,7 +38,7 @@ function Vue (options) {
 callHook(vm, 'beforeCreate')
 ```
 
-### beforeCreate被调用完成
+### beforeCreate 被调用完成
 
 `beforeCreate` 之后
 
@@ -46,17 +46,15 @@ callHook(vm, 'beforeCreate')
 
 2. 初始化
 
-    
+```
+state
+```
 
-   ```
-   state
-   ```
-
-   - 初始化 `props`
-   - 初始化 `methods`
-   - 初始化 `data`
-   - 初始化 `computed`
-   - 初始化 `watch`
+- 初始化 `props`
+- 初始化 `methods`
+- 初始化 `data`
+- 初始化 `computed`
+- 初始化 `watch`
 
 3. 初始化 `provide`
 
@@ -68,7 +66,7 @@ callHook(vm, 'beforeCreate')
 callHook(vm, 'created')
 ```
 
-### created被调用完成
+### created 被调用完成
 
 调用 `$mount` 方法，开始挂载组件到 `dom` 上。
 
@@ -81,25 +79,25 @@ callHook(vm, 'created')
 对应具体的代码就是：
 
 ```javascript
-const ast = parse(template.trim(), options)
+const ast = parse(template.trim(), options);
 if (options.optimize !== false) {
-  optimize(ast, options)
+  optimize(ast, options);
 }
-const code = generate(ast, options)
+const code = generate(ast, options);
 ```
 
 如果是脚手架搭建的项目的话，这一步 `vue-cli` 已经帮你做好了，所以就直接进入 `mountComponent` 函数。
 
 那么，确保有了 `render` 函数后，我们就可以往`渲染`的步骤继续进行了
 
-### beforeMount被调用完成
+### beforeMount 被调用完成
 
 把 `渲染组件的函数` 定义好，具体代码是：
 
 ```javascript
 updateComponent = () => {
-  vm._update(vm._render(), hydrating)
-}
+  vm._update(vm._render(), hydrating);
+};
 ```
 
 拆解来看，`vm._render` 其实就是调用我们上一步拿到的 `render` 函数生成一个 `vnode`，而 `vm._update` 方法则会对这个 `vnode` 进行 `patch` 操作，帮我们把 `vnode` 通过 `createElm`函数创建新节点并且渲染到 `dom节点` 中。
@@ -107,78 +105,87 @@ updateComponent = () => {
 接下来就是执行这段代码了，是由 `响应式原理` 的一个核心类 `Watcher` 负责执行这个函数，为什么要它来代理执行呢？因为我们需要在这段过程中去 `观察` 这个函数读取了哪些响应式数据，将来这些响应式数据更新的时候，我们需要重新执行 `updateComponent` 函数。
 
 ```javascript
-export function mountComponent (
+export function mountComponent(
   vm: Component,
   el: ?Element,
   hydrating?: boolean
 ): Component {
-  vm.$el = el
+  vm.$el = el;
   if (!vm.$options.render) {
-    vm.$options.render = createEmptyVNode
-    if (process.env.NODE_ENV !== 'production') {
+    vm.$options.render = createEmptyVNode;
+    if (process.env.NODE_ENV !== "production") {
       /* istanbul ignore if */
-      if ((vm.$options.template && vm.$options.template.charAt(0) !== '#') ||
-        vm.$options.el || el) {
+      if (
+        (vm.$options.template && vm.$options.template.charAt(0) !== "#") ||
+        vm.$options.el ||
+        el
+      ) {
         warn(
-          'You are using the runtime-only build of Vue where the template ' +
-          'compiler is not available. Either pre-compile the templates into ' +
-          'render functions, or use the compiler-included build.',
+          "You are using the runtime-only build of Vue where the template " +
+            "compiler is not available. Either pre-compile the templates into " +
+            "render functions, or use the compiler-included build.",
           vm
-        )
+        );
       } else {
         warn(
-          'Failed to mount component: template or render function not defined.',
+          "Failed to mount component: template or render function not defined.",
           vm
-        )
+        );
       }
     }
   }
-  callHook(vm, 'beforeMount')
+  callHook(vm, "beforeMount");
 
-  let updateComponent
+  let updateComponent;
   /* istanbul ignore if */
-  if (process.env.NODE_ENV !== 'production' && config.performance && mark) {
+  if (process.env.NODE_ENV !== "production" && config.performance && mark) {
     updateComponent = () => {
-      const name = vm._name
-      const id = vm._uid
-      const startTag = `vue-perf-start:${id}`
-      const endTag = `vue-perf-end:${id}`
+      const name = vm._name;
+      const id = vm._uid;
+      const startTag = `vue-perf-start:${id}`;
+      const endTag = `vue-perf-end:${id}`;
 
-      mark(startTag)
-      const vnode = vm._render()
-      mark(endTag)
-      measure(`vue ${name} render`, startTag, endTag)
+      mark(startTag);
+      const vnode = vm._render();
+      mark(endTag);
+      measure(`vue ${name} render`, startTag, endTag);
 
-      mark(startTag)
-      vm._update(vnode, hydrating)
-      mark(endTag)
-      measure(`vue ${name} patch`, startTag, endTag)
-    }
+      mark(startTag);
+      vm._update(vnode, hydrating);
+      mark(endTag);
+      measure(`vue ${name} patch`, startTag, endTag);
+    };
   } else {
     updateComponent = () => {
-      vm._update(vm._render(), hydrating)
-    }
+      vm._update(vm._render(), hydrating);
+    };
   }
 
   // we set this to vm._watcher inside the watcher's constructor
   // since the watcher's initial patch may call $forceUpdate (e.g. inside child
   // component's mounted hook), which relies on vm._watcher being already defined
-  new Watcher(vm, updateComponent, noop, {
-    before () {
-      if (vm._isMounted && !vm._isDestroyed) {
-        callHook(vm, 'beforeUpdate')
-      }
-    }
-  }, true /* isRenderWatcher */)
-  hydrating = false
+  new Watcher(
+    vm,
+    updateComponent,
+    noop,
+    {
+      before() {
+        if (vm._isMounted && !vm._isDestroyed) {
+          callHook(vm, "beforeUpdate");
+        }
+      },
+    },
+    true /* isRenderWatcher */
+  );
+  hydrating = false;
 
   // manually mounted instance, call mounted on self
   // mounted is called for render-created child components in its inserted hook
   if (vm.$vnode == null) {
-    vm._isMounted = true
-    callHook(vm, 'mounted')
+    vm._isMounted = true;
+    callHook(vm, "mounted");
   }
-  return vm
+  return vm;
 }
 ```
 
@@ -189,20 +196,26 @@ export function mountComponent (
 这一切交给 `Watcher` 完成：
 
 ```javascript
-new Watcher(vm, updateComponent, noop, {
-  before () {
-    if (vm._isMounted) {
-      callHook(vm, 'beforeUpdate')
-    }
-  }
-}, true /* isRenderWatcher */)
+new Watcher(
+  vm,
+  updateComponent,
+  noop,
+  {
+    before() {
+      if (vm._isMounted) {
+        callHook(vm, "beforeUpdate");
+      }
+    },
+  },
+  true /* isRenderWatcher */
+);
 ```
 
 注意这里在`before` 属性上定义了`beforeUpdate` 函数，也就是说在 `Watcher` 被响应式属性的更新触发之后，重新渲染新视图之前，会先调用 `beforeUpdate` 生命周期。
 
 关于 `Watcher` 和响应式的概念，如果你还不清楚的话，可以阅读我之前的文章：
 
-[手把手带你实现一个最精简的响应式系统来学习Vue的data、computed、watch源码](https://juejin.im/post/5db6433b51882564912fc30f)
+[手把手带你实现一个最精简的响应式系统来学习 Vue 的 data、computed、watch 源码](https://juejin.im/post/5db6433b51882564912fc30f)
 
 注意，在 `render` 的过程中，如果遇到了 `子组件`，则会调用 `createComponent` 函数。
 
@@ -220,9 +233,9 @@ Ctor = baseCtor.extend(Ctor)
 
 ```javascript
 // 创建子组件
-const child = createComponentInstanceForVnode(vnode)
+const child = createComponentInstanceForVnode(vnode);
 // 挂载到 dom 上
-child.$mount(vnode.elm)
+child.$mount(vnode.elm);
 ```
 
 而 `createComponentInstanceForVnode` 内部又做了什么事呢？它会去调用 `子组件` 的构造函数。
@@ -234,9 +247,9 @@ new vnode.componentOptions.Ctor(options)
 构造函数的内部是这样的：
 
 ```javascript
-const Sub = function VueComponent (options) {
-  this._init(options)
-}
+const Sub = function VueComponent(options) {
+  this._init(options);
+};
 ```
 
 这个 `_init` 其实就是我们文章开头的那个函数，也就是说，如果遇到 `子组件`，那么就会优先开始`子组件`的构建过程，也就是说，从 `beforeCreated` 重新开始。这是一个递归的构建过程。
@@ -244,23 +257,23 @@ const Sub = function VueComponent (options) {
 也就是说，如果我们有 `父 -> 子 -> 孙` 这三个组件，那么它们的初始化生命周期顺序是这样的：
 
 ```javascript
-父 beforeCreate 
-父 create 
-父 beforeMount 
-子 beforeCreate 
-子 create 
-子 beforeMount 
-孙 beforeCreate 
-孙 create 
-孙 beforeMount 
-孙 mounted 
-子 mounted 
-父 mounted 
+父 beforeCreate
+父 create
+父 beforeMount
+子 beforeCreate
+子 create
+子 beforeMount
+孙 beforeCreate
+孙 create
+孙 beforeMount
+孙 mounted
+子 mounted
+父 mounted
 ```
 
 然后，`mounted` 生命周期被触发。
 
-### mounted被调用完成
+### mounted 被调用完成
 
 到此为止，组件的挂载就完成了，初始化的生命周期结束。
 
@@ -288,7 +301,7 @@ function flushSchedulerQueue {
 }
 ```
 
-### beforeUpdate被调用完成
+### beforeUpdate 被调用完成
 
 然后经历了一系列的 `patch`、`diff` 流程后，组件重新渲染完毕，调用 `updated` 钩子。
 
@@ -309,7 +322,7 @@ function callUpdatedHooks (queue) {
 }
 ```
 
-### updated被调用完成
+### updated 被调用完成
 
 至此，渲染更新流程完毕。
 
@@ -321,13 +334,13 @@ function callUpdatedHooks (queue) {
 
 这时，就会调用 `callHook(vm, 'beforeDestroy')`
 
-### beforeDestroy被调用完成
+### beforeDestroy 被调用完成
 
 之后就会经历一系列的`清理`逻辑，清除父子关系、`watcher` 关闭等逻辑。但是注意，`$destroy` 并不会把组件从视图上移除，如果想要手动销毁一个组件，则需要我们自己去完成这个逻辑。
 
 然后，调用最后的 `callHook(vm, 'destroyed')`
 
-### destroyed被调用完成
+### destroyed 被调用完成
 
 ## 细节
 
@@ -338,10 +351,10 @@ function callUpdatedHooks (queue) {
 在更新子组件 `updateChildComponent` 操作中，会去取收集到的 `vnode` 上的 `attrs` 和 `listeners` 去更新 `$attrs` 属性，这样就算子组件的模板上用了 `$attrs` 的属性也可触发响应式的更新。
 
 ```javascript
-import { emptyObject } from '../util/index'
+import { emptyObject } from "../util/index";
 
-vm.$attrs = parentVnode.data.attrs || emptyObject
-vm.$listeners = listeners || emptyObject
+vm.$attrs = parentVnode.data.attrs || emptyObject;
+vm.$listeners = listeners || emptyObject;
 ```
 
 有一个比较细节的操作是这样的：
@@ -351,11 +364,11 @@ vm.$listeners = listeners || emptyObject
 因为 `defineReactive` 的 `set` 函数中会做这样的判断：
 
 ```javascript
-set: function reactiveSetter (newVal) {
-  const value = getter ? getter.call(obj) : val
+set: function reactiveSetter(newVal) {
+  const value = getter ? getter.call(obj) : val;
   // 这里引用相等 直接返回了
   if (newVal === value || (newVal !== newVal && value !== value)) {
-    return
+    return;
   }
 }
 ```
@@ -367,13 +380,13 @@ set: function reactiveSetter (newVal) {
 ```javascript
 if (options && options._isComponent) {
   // 如果是组件的话 走这个逻辑
-  initInternalComponent(vm, options)
+  initInternalComponent(vm, options);
 } else {
   vm.$options = mergeOptions(
     resolveConstructorOptions(vm.constructor),
     options || {},
     vm
-  )
+  );
 }
 ```
 
@@ -433,7 +446,7 @@ _base: ƒ Vue(options)
 const opts = vm.$options = Object.create(vm.constructor.options)
 ```
 
-### $vnode 和 _vnode 的区别
+### \$vnode 和 \_vnode 的区别
 
 实例上有两个属性总是让人摸不着头脑，就是 `$vnode` 和 `_vnode`，
 
@@ -455,13 +468,13 @@ const opts = vm.$options = Object.create(vm.constructor.options)
 
 接下来我们都以 `test` 组件举例，请仔细看清楚它们的父子关系以及使用的标签和类名。
 
-#### $vnode
+#### \$vnode
 
 在渲染 `App` 组件的时候，遇到了 `test` 标签，会把 `test` 组件包裹成一个 `vnode`：
 
 ```html
 <div class="class-app">
-  // 渲染到这里 
+  // 渲染到这里
   <test />
 </div>
 ```
@@ -486,7 +499,7 @@ child: (...)
 
 此时，它在 `test` 组件的实例 `this` 上就保存为 `this.$vnode`。
 
-#### _vnode
+#### \_vnode
 
 在 `test` 组件实例上，通过 `this._vnode` 访问到的 `vnode` 形如这样：
 
@@ -508,10 +521,10 @@ parent: VNode {tag: "vue-component-1-test", data: {…}, children: undefined, te
 在 `_update` 方法中也找到了来源：
 
 ```javascript
-Vue.prototype._update = function (vnode: VNode, hydrating?: boolean) {
-  const vm: Component = this
-  vm._vnode = vnode
-}  
+Vue.prototype._update = function(vnode: VNode, hydrating?: boolean) {
+  const vm: Component = this;
+  vm._vnode = vnode;
+};
 ```
 
 回忆一下组件是怎么初始化挂载和更新的，是不是 `vm._update(vm._render())`？
@@ -532,8 +545,8 @@ _vnode.parent === $vnode
 
 他们的 `elm`，也就是实际 `dom元素`，都指向组件内部的`根元素`。
 
-### this.$children 和 _vnode.children
+### this.\$children 和 \_vnode.children
 
 `$children` 只保存当前实例的**直接子组件** 实例，所以你访问不到 `button`，`li` 这些 `原生html标签`。注意是实例而不是 `vnode`，也就是通过 `this` 访问到的那玩意。
 
-`_vnode.children`，则会把当前组件的 `vnode` 树全部保存起来，不管是`组件vnode`还是原生 html 标签生成的`vnode`，并且 原生 html生成的 `vnode` 内部还可以通过`children`进一步访问子`vnode`。
+`_vnode.children`，则会把当前组件的 `vnode` 树全部保存起来，不管是`组件vnode`还是原生 html 标签生成的`vnode`，并且 原生 html 生成的 `vnode` 内部还可以通过`children`进一步访问子`vnode`。
