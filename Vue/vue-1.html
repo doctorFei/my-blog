@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Vue的响应式更新精确到组件级别 | 雨巷的博客</title>
+    <meta name="generator" content="VuePress 1.5.0">
+    <link rel="icon" href="/my-blog/assets/img/favicon.ico">
+    <link rel="manifest" href="/my-blog/manifest.json">
+    <link rel="apple-touch-icon" href="/my-blog/icons/apple-touch-icon-152x152.png">
+    <link rel="mask-icon" href="/my-blog/icons/safari-pinned-tab.svg" color="#3eaf7c">
+    <meta name="description" content="雨巷的博客">
+    <meta name="author" content="雨巷的博客">
+    <meta name="keywords" content="雨巷的博客">
+    <meta name="theme-color" content="#3eaf7c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-TileImage" content="/icons/msapplication-icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <link rel="preload" href="/my-blog/assets/css/0.styles.48b128da.css" as="style"><link rel="preload" href="/my-blog/assets/js/app.8b8b2b3a.js" as="script"><link rel="preload" href="/my-blog/assets/js/2.9a1f826b.js" as="script"><link rel="preload" href="/my-blog/assets/js/8.4a78cb7e.js" as="script"><link rel="preload" href="/my-blog/assets/js/3.824b3276.js" as="script"><link rel="prefetch" href="/my-blog/assets/js/10.a7bc797a.js"><link rel="prefetch" href="/my-blog/assets/js/11.2310ec6f.js"><link rel="prefetch" href="/my-blog/assets/js/12.74be65ee.js"><link rel="prefetch" href="/my-blog/assets/js/13.0c0d7a46.js"><link rel="prefetch" href="/my-blog/assets/js/14.42cd1996.js"><link rel="prefetch" href="/my-blog/assets/js/15.d9db4829.js"><link rel="prefetch" href="/my-blog/assets/js/16.19fec63c.js"><link rel="prefetch" href="/my-blog/assets/js/17.e1318802.js"><link rel="prefetch" href="/my-blog/assets/js/18.fcf8b9e0.js"><link rel="prefetch" href="/my-blog/assets/js/19.ba8b7b9d.js"><link rel="prefetch" href="/my-blog/assets/js/4.6e387740.js"><link rel="prefetch" href="/my-blog/assets/js/5.87968e80.js"><link rel="prefetch" href="/my-blog/assets/js/6.72d314ae.js"><link rel="prefetch" href="/my-blog/assets/js/7.ac323565.js"><link rel="prefetch" href="/my-blog/assets/js/9.1d3ae902.js">
+    <link rel="stylesheet" href="/my-blog/assets/css/0.styles.48b128da.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/my-blog/" class="home-link router-link-active"><img src="/my-blog/assets/img/logo.png" alt="雨巷的博客" class="logo"> <span class="site-name can-hide">雨巷的博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/my-blog/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/my-blog/iview-admin-pro/" class="nav-link">
+  组件库
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><span class="title">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/my-blog/Vue/" class="nav-link router-link-active">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/my-blog/javascript/" class="nav-link">
+  Javascript
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="工程化" class="dropdown-title"><span class="title">工程化</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          Group1
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/my-blog/language/chinese/" class="nav-link">
+  Chinese
+</a></li><li class="dropdown-subitem"><a href="/my-blog/language/japanese/" class="nav-link">
+  Japanese
+</a></li></ul></li><li class="dropdown-item"><h4>
+          Group2
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/my-blog/language/chinese/" class="nav-link">
+  Chinese
+</a></li><li class="dropdown-subitem"><a href="/my-blog/language/japanese/" class="nav-link">
+  Japanese
+</a></li></ul></li></ul></div></div><div class="nav-item"><a href="https://github.com/doctorFei" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/my-blog/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/my-blog/iview-admin-pro/" class="nav-link">
+  组件库
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><span class="title">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/my-blog/Vue/" class="nav-link router-link-active">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/my-blog/javascript/" class="nav-link">
+  Javascript
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="工程化" class="dropdown-title"><span class="title">工程化</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          Group1
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/my-blog/language/chinese/" class="nav-link">
+  Chinese
+</a></li><li class="dropdown-subitem"><a href="/my-blog/language/japanese/" class="nav-link">
+  Japanese
+</a></li></ul></li><li class="dropdown-item"><h4>
+          Group2
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/my-blog/language/chinese/" class="nav-link">
+  Chinese
+</a></li><li class="dropdown-subitem"><a href="/my-blog/language/japanese/" class="nav-link">
+  Japanese
+</a></li></ul></li></ul></div></div><div class="nav-item"><a href="https://github.com/doctorFei" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Vue</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/my-blog/Vue/" aria-current="page" class="sidebar-link">Vue 中 slot 和 slot-scope 的原理</a></li><li><a href="/my-blog/Vue/vue-1.html" aria-current="page" class="active sidebar-link">Vue的响应式更新精确到组件级别</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/my-blog/Vue/vue-1.html#前言" class="sidebar-link">前言</a></li><li class="sidebar-sub-header"><a href="/my-blog/Vue/vue-1.html#例子" class="sidebar-link">例子</a></li><li class="sidebar-sub-header"><a href="/my-blog/Vue/vue-1.html#react-的更新粒度" class="sidebar-link">React 的更新粒度</a></li><li class="sidebar-sub-header"><a href="/my-blog/Vue/vue-1.html#vue-的更新粒度" class="sidebar-link">Vue 的更新粒度</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/my-blog/Vue/vue-1.html#patchvnode" class="sidebar-link">patchVnode</a></li><li class="sidebar-sub-header"><a href="/my-blog/Vue/vue-1.html#props-的更新如何触发重渲染？" class="sidebar-link">props 的更新如何触发重渲染？</a></li><li class="sidebar-sub-header"><a href="/my-blog/Vue/vue-1.html#slot-是怎么更新的？" class="sidebar-link">slot 是怎么更新的？</a></li></ul></li><li class="sidebar-sub-header"><a href="/my-blog/Vue/vue-1.html#父子组件的更新会经历两个-nexttick-吗？" class="sidebar-link">父子组件的更新会经历两个 nextTick 吗？</a></li><li class="sidebar-sub-header"><a href="/my-blog/Vue/vue-1.html#vue-2-6-的优化" class="sidebar-link">Vue 2.6 的优化</a></li><li class="sidebar-sub-header"><a href="/my-blog/Vue/vue-1.html#赠礼-一个小-issue" class="sidebar-link">赠礼 一个小 issue</a></li><li class="sidebar-sub-header"><a href="/my-blog/Vue/vue-1.html#后记" class="sidebar-link">后记</a></li></ul></li><li><a href="/my-blog/Vue/vue-2.html" class="sidebar-link">Vue 中不要用 index 作为 key？</a></li><li><a href="/my-blog/Vue/vue-3.html" class="sidebar-link">Vue 的生命周期</a></li><li><a href="/my-blog/Vue/vue-4.html" class="sidebar-link">Vue响应式原理</a></li><li><a href="/my-blog/Vue/vue-5.html" class="sidebar-link">组件通信</a></li><li><a href="/my-blog/Vue/vue-6.html" class="sidebar-link">Vue面试题（一）</a></li><li><a href="/my-blog/Vue/vue-7.html" class="sidebar-link">vue 性能优化</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="前言"><a href="#前言" class="header-anchor">#</a> 前言</h2> <p>我们都知道 Vue 对于响应式属性的更新，只会精确更新依赖收集的<code>当前组件</code>，而不会递归的去更新子组件，这也是它性能强大的原因之一。</p> <h2 id="例子"><a href="#例子" class="header-anchor">#</a> 例子</h2> <p>举例来说 这样的一个组件：</p> <div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
+    {{ msg }}
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ChildComponent</span> <span class="token punctuation">/&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p>我们在触发 <code>this.msg = 'Hello, Changed~'</code>的时候，会触发组件的更新，视图的重新渲染。</p> <p>但是 <code>&lt;ChildComponent /&gt;</code> 这个组件其实是不会重新渲染的，这是 Vue 刻意而为之的。</p> <p>在以前的一段时间里，我曾经认为因为组件是一棵树，所以它的更新就是理所当然的深度遍历这棵树，进行递归更新。本篇就从源码的角度带你一起分析，Vue 是怎么做到<code>精确更新</code>的。</p> <h2 id="react-的更新粒度"><a href="#react-的更新粒度" class="header-anchor">#</a> React 的更新粒度</h2> <p>而 React 在类似的场景下是<code>自顶向下的进行递归更新的</code>，也就是说，React 中假如 <code>ChildComponent</code> 里还有十层嵌套子元素，那么所有层次都会递归的重新 render（在不进行手动优化的情况下），这是性能上的灾难。（因此，React 创造了<code>Fiber</code>，创造了<code>异步渲染</code>，其实本质上是弥补被自己搞砸了的性能）。</p> <p>他们能用收集依赖的这套体系吗？不能，因为他们遵从<code>Immutable</code>的设计思想，永远不在原对象上修改属性，那么基于 <code>Object.defineProperty</code> 或 <code>Proxy</code> 的响应式依赖收集机制就无从下手了（你永远返回一个新的对象，我哪知道你修改了旧对象的哪部分？）</p> <p>同时，由于没有响应式的收集依赖，React 只能递归的把所有子组件都重新 <code>render</code>一遍（除了 memo 和 shouldComponentUpdate 这些优化手段），然后再通过 <code>diff算法</code> 决定要更新哪部分的视图，这个递归的过程叫做 <code>reconciler</code>，听起来很酷，但是性能很灾难。</p> <h2 id="vue-的更新粒度"><a href="#vue-的更新粒度" class="header-anchor">#</a> Vue 的更新粒度</h2> <p>那么，Vue 这种精确的更新是怎么做的呢？其实每个组件都有自己的<code>渲染 watcher</code>，它掌管了当前组件的视图更新，但是并不会掌管 <code>ChildComponent</code> 的更新。</p> <p>具体到源码中，是怎么样实现的呢？</p> <p>在 <code>patch</code> 的过程中，当组件更新到<code>ChildComponent</code>的时候，会走到 <code>patchVnode</code>，那么这个方法大致做了哪些事情呢？</p> <h3 id="patchvnode"><a href="#patchvnode" class="header-anchor">#</a> patchVnode</h3> <h4 id="执行-vnode-的-prepatch-钩子。"><a href="#执行-vnode-的-prepatch-钩子。" class="header-anchor">#</a> 执行 <code>vnode</code> 的 <code>prepatch</code> 钩子。</h4> <p>注意，只有 <code>组件vnode</code> 才会有 <code>prepatch</code> 这个生命周期，</p> <p>这里会走到<code>updateChildComponent</code>方法，这个 <code>child</code> 具体指什么呢？</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code>  <span class="token function">prepatch</span> <span class="token punctuation">(</span><span class="token parameter">oldVnode<span class="token operator">:</span> MountedComponentVNode<span class="token punctuation">,</span> vnode<span class="token operator">:</span> MountedComponentVNode</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> options <span class="token operator">=</span> vnode<span class="token punctuation">.</span>componentOptions
+    <span class="token comment">// 注意 这个child就是ChildComponent组件的 vm 实例，也就是咱们平常用的 this</span>
+    <span class="token keyword">const</span> child <span class="token operator">=</span> vnode<span class="token punctuation">.</span>componentInstance <span class="token operator">=</span> oldVnode<span class="token punctuation">.</span>componentInstance
+    <span class="token function">updateChildComponent</span><span class="token punctuation">(</span>
+      child<span class="token punctuation">,</span>
+      options<span class="token punctuation">.</span>propsData<span class="token punctuation">,</span> <span class="token comment">// updated props</span>
+      options<span class="token punctuation">.</span>listeners<span class="token punctuation">,</span> <span class="token comment">// updated listeners</span>
+      vnode<span class="token punctuation">,</span> <span class="token comment">// new parent vnode</span>
+      options<span class="token punctuation">.</span>children <span class="token comment">// new children</span>
+    <span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+</code></pre></div><p>其实看传入的参数也能猜到大概了，就是做了：</p> <ol><li>更新 props（后续详细讲）</li> <li>更新绑定事件</li> <li>对于 slot 做一些更新（后续详细讲）</li></ol> <h4 id="如果有子节点的话，对子节点进行-diff。"><a href="#如果有子节点的话，对子节点进行-diff。" class="header-anchor">#</a> 如果有子节点的话，对子节点进行 diff。</h4> <p>比如这样的场景：</p> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p>要对于 <code>ul</code> 中的三个 <code>li</code> 子节点 <code>vnode</code> 利用 <code>diff</code> 算法来更新，本篇略过。</p> <p>然后到此为止，<code>patchVnode</code> 就结束了，并没有像常规思维中的那样去递归的更新子组件树。</p> <p>这也就说明了，<strong>Vue 的组件更新确实是精确到组件本身的</strong>。</p> <h4 id="如果是子组件呢？"><a href="#如果是子组件呢？" class="header-anchor">#</a> 如果是子组件呢？</h4> <p>假设列表是这样的：</p> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>component</span><span class="token punctuation">&gt;</span></span>1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>component</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>component</span><span class="token punctuation">&gt;</span></span>2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>component</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>component</span><span class="token punctuation">&gt;</span></span>3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>component</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p>那么在 diff 的过程中，只会对 <code>component</code> 上声明的 <code>props</code>、<code>listeners</code>等属性进行更新，<strong>而不会深入到组件内部进行更新</strong>。</p> <p>注意：不会深入到组件内部进行更新！（划重点，这也是本文所说的更新粒度的关键）</p> <h3 id="props-的更新如何触发重渲染？"><a href="#props-的更新如何触发重渲染？" class="header-anchor">#</a> props 的更新如何触发重渲染？</h3> <p>那么有同学可能要问了，如果不会递归的去对子组件更新，如果我们把 <code>msg</code> 这个响应式元素通过 props 传给 <code>ChildComponent</code>，此时它怎么更新呢？</p> <p>首先，在组件初始化 props 的时候，会走到 <code>initProps</code> 方法。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">const</span> props <span class="token operator">=</span> <span class="token punctuation">(</span>vm<span class="token punctuation">.</span>_props <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> key <span class="token keyword">in</span> propsOptions<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 经过一系列验证props合法性的流程后</span>
+  <span class="token keyword">const</span> value <span class="token operator">=</span> <span class="token function">validateProp</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> propsOptions<span class="token punctuation">,</span> propsData<span class="token punctuation">,</span> vm<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// props中的字段也被定义成响应式了</span>
+  <span class="token function">defineReactive</span><span class="token punctuation">(</span>props<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>至此为止，是实现了对于 <code>_props</code> 上字段变更的劫持。也就是变成了响应式数据，后面我们做类似于 <code>_props.msg = 'Changed'</code> 的操作时（当然我们不会这样做，Vue 内部会做），就会触发视图更新。</p> <p>其实，<code>msg</code> 在传给子组件的时候，会被保存在子组件实例的 <code>_props</code> 上，并且被定义成了<code>响应式属性</code>，而子组件的模板中对于 <code>msg</code> 的访问其实是被代理到 <code>_props.msg</code> 上去的，所以自然也能精确的收集到依赖，只要 <code>ChildComponent</code> 在模板里也读取了这个属性。</p> <p>这里要注意一个细节，其实父组件发生重渲染的时候，是会重新计算子组件的 <code>props</code> 的，具体是在 <code>updateChildComponent</code> 中的：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token comment">// update props</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>propsData <span class="token operator">&amp;&amp;</span> vm<span class="token punctuation">.</span>$options<span class="token punctuation">.</span>props<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">toggleObserving</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// 注意props被指向了 _props</span>
+  <span class="token keyword">const</span> props <span class="token operator">=</span> vm<span class="token punctuation">.</span>_props<span class="token punctuation">;</span>
+  <span class="token keyword">const</span> propKeys <span class="token operator">=</span> vm<span class="token punctuation">.</span>$options<span class="token punctuation">.</span>_propKeys <span class="token operator">||</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> propKeys<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> key <span class="token operator">=</span> propKeys<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> propOptions<span class="token operator">:</span> any <span class="token operator">=</span> vm<span class="token punctuation">.</span>$options<span class="token punctuation">.</span>props<span class="token punctuation">;</span> <span class="token comment">// wtf flow?</span>
+    <span class="token comment">// 就是这句话，触发了对于 _props.msg 的依赖更新。</span>
+    props<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">validateProp</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> propOptions<span class="token punctuation">,</span> propsData<span class="token punctuation">,</span> vm<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">toggleObserving</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// keep a copy of raw propsData</span>
+  vm<span class="token punctuation">.</span>$options<span class="token punctuation">.</span>propsData <span class="token operator">=</span> propsData<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>那么，由于上面注释标明的那段代码，<code>msg</code> 的变化通过 <code>_props</code> 的响应式能力，也让子组件重新渲染了，到目前为止，都只有真的用到了 <code>msg</code> 的组件被重新渲染了。</p> <p>正如官网 api 文档中所说：</p> <blockquote><p><code>vm.$forceUpdate</code>：迫使 Vue 实例重新渲染。注意它仅仅影响实例本身和插入插槽内容的子组件，而不是所有子组件。 —— <a href="https://cn.vuejs.org/v2/api/#vm-forceUpdate" target="_blank" rel="noopener noreferrer">vm-forceUpdate 文档<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p></blockquote> <p>我们需要知道一个小知识点，<code>vm.$forceUpdate</code> 本质上就是触发了<code>渲染watcher</code>的重新执行，和你去修改一个响应式的属性触发更新的原理是一模一样的，它只是帮你调用了 <code>vm._watcher.update()</code>（只是提供给你了一个便捷的 api，在设计模式中叫做<code>门面模式</code>）</p> <h3 id="slot-是怎么更新的？"><a href="#slot-是怎么更新的？" class="header-anchor">#</a> slot 是怎么更新的？</h3> <p>注意这里也提到了一个细节，也就是 <code>插入插槽内容的子组件</code>：</p> <p>举例来说</p> <p>假设我们有父组件<code>parent-comp</code>：</p> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>slot-comp</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>{{ msg }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>slot-comp</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p>子组件 <code>slot-comp</code>：</p> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>slot</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>slot</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p>组件中含有 <code>slot</code>的更新 ，是属于比较特殊的场景。</p> <p>这里的 <code>msg</code> 属性在进行依赖收集的时候，收集到的是 <code>parent-comp</code> 的`渲染 watcher。（至于为什么，你看一下它所在的渲染上下文就懂了。）</p> <p>那么我们想象 <code>msg</code> 此时更新了，</p> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>slot-comp</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>{{ msg }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>slot-comp</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p>这个组件在更新的时候，遇到了一个子组件 <code>slot-comp</code>，按照 Vue 的精确更新策略来说，子组件是不会重新渲染的。</p> <p>但是在源码内部，它做了一个判断，在执行 <code>slot-comp</code> 的 <code>prepatch</code> 这个 hook 的时候，会执行 <code>updateChildComponent</code> 逻辑，在这个函数内部会发现它有 <code>slot</code> 元素。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code>  <span class="token function">prepatch</span> <span class="token punctuation">(</span><span class="token parameter">oldVnode<span class="token operator">:</span> MountedComponentVNode<span class="token punctuation">,</span> vnode<span class="token operator">:</span> MountedComponentVNode</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> options <span class="token operator">=</span> vnode<span class="token punctuation">.</span>componentOptions
+    <span class="token comment">// 注意 这个child就是 slot-comp 组件的 vm 实例，也就是咱们平常用的 this</span>
+    <span class="token keyword">const</span> child <span class="token operator">=</span> vnode<span class="token punctuation">.</span>componentInstance <span class="token operator">=</span> oldVnode<span class="token punctuation">.</span>componentInstance
+    <span class="token function">updateChildComponent</span><span class="token punctuation">(</span>
+      child<span class="token punctuation">,</span>
+      options<span class="token punctuation">.</span>propsData<span class="token punctuation">,</span> <span class="token comment">// updated props</span>
+      options<span class="token punctuation">.</span>listeners<span class="token punctuation">,</span> <span class="token comment">// updated listeners</span>
+      vnode<span class="token punctuation">,</span> <span class="token comment">// new parent vnode</span>
+      options<span class="token punctuation">.</span>children <span class="token comment">// new children</span>
+    <span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+</code></pre></div><p>在 <code>updateChildComponent</code> 内部</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">const</span> hasChildren <span class="token operator">=</span> <span class="token operator">!</span><span class="token operator">!</span><span class="token punctuation">(</span>
+  <span class="token comment">// 这玩意就是 slot 元素</span>
+  <span class="token punctuation">(</span>
+    renderChildren <span class="token operator">||</span> <span class="token comment">// has new static slots</span>
+    vm<span class="token punctuation">.</span>$options<span class="token punctuation">.</span>_renderChildren <span class="token operator">||</span> <span class="token comment">// has old static slots</span>
+    parentVnode<span class="token punctuation">.</span>data<span class="token punctuation">.</span>scopedSlots <span class="token operator">||</span> <span class="token comment">// has new scoped slots</span>
+    vm<span class="token punctuation">.</span>$scopedSlots <span class="token operator">!==</span> emptyObject
+  <span class="token punctuation">)</span> <span class="token comment">// has old scoped slots</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>然后下面走一个判断</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">if</span> <span class="token punctuation">(</span>hasChildren<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  vm<span class="token punctuation">.</span>$slots <span class="token operator">=</span> <span class="token function">resolveSlots</span><span class="token punctuation">(</span>renderChildren<span class="token punctuation">,</span> parentVnode<span class="token punctuation">.</span>context<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  vm<span class="token punctuation">.</span><span class="token function">$forceUpdate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>这里调用了 <code>slot-comp</code> 组件 vm 实例上的 <code>$forceUpdate</code>，那么它所触发的<code>渲染watcher</code>就是属于<code>slot-comp</code>的<code>渲染watcher</code>了。</p> <p>总结来说，这次 <code>msg</code> 的更新不光触发了 <code>parent-comp</code> 的重渲染，也进一步的触发了拥有 slot 的子组件 <code>slot-comp</code> 的重渲染。</p> <p>它也只是触发了两层渲染，如果 <code>slot-comp</code> 内部又渲染了其他组件 <code>slot-child</code>，那么此时它是不会进行递归更新的。（只要 <code>slot-child</code> 组件不要再有 slot 了）。</p> <p>比起 React 的递归更新，是不是还是好上很多呢？</p> <h2 id="父子组件的更新会经历两个-nexttick-吗？"><a href="#父子组件的更新会经历两个-nexttick-吗？" class="header-anchor">#</a> 父子组件的更新会经历两个 <code>nextTick</code> 吗？</h2> <p>答案是不会： 注意看源码 <code>queueWatcher</code> 里的逻辑，父组件更新的时候全局变量 <code>isFlushing</code> 是 true，所以不会等到下个 tick 执行，而是直接推进队列里，在一个 tick 里一起更新掉了。</p> <p>父组件更新的 <code>nextTick</code> 中会执行这个，会去循环运行 <code>queue</code> 里的 <code>watcher</code></p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">function</span> <span class="token function">flushSchedulerQueue</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  currentFlushTimestamp <span class="token operator">=</span> <span class="token function">getNow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  flushing <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span>index <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> index <span class="token operator">&lt;</span> queue<span class="token punctuation">.</span>length<span class="token punctuation">;</span> index<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 更新父组件</span>
+    watcher<span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+复制代码<span class="token punctuation">;</span>
+</code></pre></div><p>而在父组件更新的过程中又触发了子组件的响应式更新，导致触发了 <code>queueWatcher</code> 的话，由于 <code>isFlushing</code> 是 true，会这样走 <code>else</code> 中的逻辑，由于子组件的 <code>id</code> 是大于父组件的 <code>id</code> 的，所以会在插入在父组件的 <code>watcher</code> 之后，父组件的更新函数执行完毕后，自然就会执行子组件的 <code>watcher</code> 了。这是在同一个 tick 中的。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>flushing<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  queue<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>watcher<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+  <span class="token comment">// if already flushing, splice the watcher based on its id</span>
+  <span class="token comment">// if already past its id, it will be run next immediately.</span>
+  <span class="token keyword">let</span> i <span class="token operator">=</span> queue<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>i <span class="token operator">&gt;</span> index <span class="token operator">&amp;&amp;</span> queue<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>id <span class="token operator">&gt;</span> watcher<span class="token punctuation">.</span>id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    i<span class="token operator">--</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  queue<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> watcher<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>只是在队列中加入了这个 <code>watcher</code> 直接执行。</p> <h2 id="vue-2-6-的优化"><a href="#vue-2-6-的优化" class="header-anchor">#</a> Vue 2.6 的优化</h2> <p>Vue 2.6 把上述对于 <code>slot</code> 的操作又进一步优化了，简单来说，利用</p> <div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>slot-comp</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name"><span class="token namespace">v-slot:</span>foo</span><span class="token punctuation">&gt;</span></span>
+    {{ msg }}
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>slot-comp</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p>这种语法生成的插槽，会统一被编译成函数，在子组件的上下文中执行，所以父组件不会再收集到它内部的依赖，如果父组件中没有用到 <code>msg</code>，更新只会影响到子组件本身。而不再是从通过父组件修改 <code>_props</code> 来通知子组件更新了。</p> <h2 id="赠礼-一个小-issue"><a href="#赠礼-一个小-issue" class="header-anchor">#</a> 赠礼 一个小 issue</h2> <p>有人给 Vue 2.4.2 版本提了一个<a href="https://github.com/vuejs/vue/issues/7573" target="_blank" rel="noopener noreferrer">issue<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>，在下面的场景下会出现 bug。</p> <div class="language-vue extra-class"><pre class="language-vue"><code>let Child = {
+  name: &quot;child&quot;,
+  template:
+    '<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>{{ localMsg }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">@click</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>change<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>click<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>',
+  data: function() {
+    return {
+      localMsg: this.msg
+    };
+  },
+  props: {
+    msg: String
+  },
+  methods: {
+    change() {
+      this.$emit(&quot;update:msg&quot;, &quot;world&quot;);
+    }
+  }
+};
+
+new Vue({
+  el: &quot;#app&quot;,
+  template: '<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>child</span> <span class="token attr-name">:msg.sync</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>msg<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>child</span><span class="token punctuation">&gt;</span></span>',
+  beforeUpdate() {
+    alert(&quot;update twice&quot;);
+  },
+  data() {
+    return {
+      msg: &quot;hello&quot;
+    };
+  },
+  components: {
+    Child
+  }
+});
+</code></pre></div><p>具体的表现是点击 <code>click按钮</code>，会 alert 出两次 <code>update twice</code>。 这是由于子组件在执行 <code>data</code> 这个函数初始化组件的数据时，会错误的再收集一遍 <code>Dep.target</code> （也就是<code>渲染watcher</code>）。</p> <p>由于数据初始化的时机是 <code>beforeCreated</code> -&gt; <code>created</code> 之间，此时由于还没有进入子组件的渲染阶段， <code>Dep.target</code> 还是父组件的<code>渲染watcher</code>。</p> <p>这就导致重复收集依赖，重复触发同样的更新，具体表现可以看这里：<a href="https://jsfiddle.net/sbmLobvr/9" target="_blank" rel="noopener noreferrer">jsfiddle.net/sbmLobvr/9<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> 。</p> <p>怎么解决的呢？很简单，在执行 <code>data</code> 函数的前后，把 <code>Dep.target</code> 先设置为 null 即可，在 <code>finally</code> 中再恢复，这样响应式数据就没办法收集到依赖了。</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">getData</span> <span class="token punctuation">(</span><span class="token parameter">data<span class="token operator">:</span> Function<span class="token punctuation">,</span> vm<span class="token operator">:</span> Component</span><span class="token punctuation">)</span><span class="token operator">:</span> any <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> prevTarget <span class="token operator">=</span> Dep<span class="token punctuation">.</span>target
+<span class="token operator">+</span> Dep<span class="token punctuation">.</span>target <span class="token operator">=</span> <span class="token keyword">null</span>
+  <span class="token keyword">try</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">data</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>vm<span class="token punctuation">,</span> vm<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">handleError</span><span class="token punctuation">(</span>e<span class="token punctuation">,</span> vm<span class="token punctuation">,</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">data()</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token operator">+</span> <span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+<span class="token operator">+</span>   Dep<span class="token punctuation">.</span>target <span class="token operator">=</span> prevTarget
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="后记"><a href="#后记" class="header-anchor">#</a> 后记</h2> <p>如果你对于 <code>Dep.target</code>、 <code>渲染watcher</code>等概念还不太理解，可以看我写的一篇最简实现 Vue 响应式的文章，欢迎阅读：</p> <p><a href="https://juejin.im/post/5db6433b51882564912fc30f" target="_blank" rel="noopener noreferrer">手把手带你实现一个最精简的响应式系统来学习 Vue 的 data、computed、watch 源码<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">17 天</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/my-blog/Vue/" class="prev router-link-active">
+        Vue 中 slot 和 slot-scope 的原理
+      </a></span> <span class="next"><a href="/my-blog/Vue/vue-2.html">
+        Vue 中不要用 index 作为 key？
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/my-blog/assets/js/app.8b8b2b3a.js" defer></script><script src="/my-blog/assets/js/2.9a1f826b.js" defer></script><script src="/my-blog/assets/js/8.4a78cb7e.js" defer></script><script src="/my-blog/assets/js/3.824b3276.js" defer></script>
+  </body>
+</html>

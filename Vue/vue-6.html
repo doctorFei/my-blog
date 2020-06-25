@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Vue面试题（一） | 雨巷的博客</title>
+    <meta name="generator" content="VuePress 1.5.0">
+    <link rel="icon" href="/my-blog/assets/img/favicon.ico">
+    <link rel="manifest" href="/my-blog/manifest.json">
+    <link rel="apple-touch-icon" href="/my-blog/icons/apple-touch-icon-152x152.png">
+    <link rel="mask-icon" href="/my-blog/icons/safari-pinned-tab.svg" color="#3eaf7c">
+    <meta name="description" content="雨巷的博客">
+    <meta name="author" content="雨巷的博客">
+    <meta name="keywords" content="雨巷的博客">
+    <meta name="theme-color" content="#3eaf7c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-TileImage" content="/icons/msapplication-icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <link rel="preload" href="/my-blog/assets/css/0.styles.48b128da.css" as="style"><link rel="preload" href="/my-blog/assets/js/app.8b8b2b3a.js" as="script"><link rel="preload" href="/my-blog/assets/js/2.9a1f826b.js" as="script"><link rel="preload" href="/my-blog/assets/js/13.0c0d7a46.js" as="script"><link rel="preload" href="/my-blog/assets/js/3.824b3276.js" as="script"><link rel="prefetch" href="/my-blog/assets/js/10.a7bc797a.js"><link rel="prefetch" href="/my-blog/assets/js/11.2310ec6f.js"><link rel="prefetch" href="/my-blog/assets/js/12.74be65ee.js"><link rel="prefetch" href="/my-blog/assets/js/14.42cd1996.js"><link rel="prefetch" href="/my-blog/assets/js/15.d9db4829.js"><link rel="prefetch" href="/my-blog/assets/js/16.19fec63c.js"><link rel="prefetch" href="/my-blog/assets/js/17.e1318802.js"><link rel="prefetch" href="/my-blog/assets/js/18.fcf8b9e0.js"><link rel="prefetch" href="/my-blog/assets/js/19.ba8b7b9d.js"><link rel="prefetch" href="/my-blog/assets/js/4.6e387740.js"><link rel="prefetch" href="/my-blog/assets/js/5.87968e80.js"><link rel="prefetch" href="/my-blog/assets/js/6.72d314ae.js"><link rel="prefetch" href="/my-blog/assets/js/7.ac323565.js"><link rel="prefetch" href="/my-blog/assets/js/8.4a78cb7e.js"><link rel="prefetch" href="/my-blog/assets/js/9.1d3ae902.js">
+    <link rel="stylesheet" href="/my-blog/assets/css/0.styles.48b128da.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/my-blog/" class="home-link router-link-active"><img src="/my-blog/assets/img/logo.png" alt="雨巷的博客" class="logo"> <span class="site-name can-hide">雨巷的博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/my-blog/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/my-blog/iview-admin-pro/" class="nav-link">
+  组件库
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><span class="title">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/my-blog/Vue/" class="nav-link router-link-active">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/my-blog/javascript/" class="nav-link">
+  Javascript
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="工程化" class="dropdown-title"><span class="title">工程化</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          Group1
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/my-blog/language/chinese/" class="nav-link">
+  Chinese
+</a></li><li class="dropdown-subitem"><a href="/my-blog/language/japanese/" class="nav-link">
+  Japanese
+</a></li></ul></li><li class="dropdown-item"><h4>
+          Group2
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/my-blog/language/chinese/" class="nav-link">
+  Chinese
+</a></li><li class="dropdown-subitem"><a href="/my-blog/language/japanese/" class="nav-link">
+  Japanese
+</a></li></ul></li></ul></div></div><div class="nav-item"><a href="https://github.com/doctorFei" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/my-blog/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/my-blog/iview-admin-pro/" class="nav-link">
+  组件库
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><span class="title">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/my-blog/Vue/" class="nav-link router-link-active">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/my-blog/javascript/" class="nav-link">
+  Javascript
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="工程化" class="dropdown-title"><span class="title">工程化</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          Group1
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/my-blog/language/chinese/" class="nav-link">
+  Chinese
+</a></li><li class="dropdown-subitem"><a href="/my-blog/language/japanese/" class="nav-link">
+  Japanese
+</a></li></ul></li><li class="dropdown-item"><h4>
+          Group2
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/my-blog/language/chinese/" class="nav-link">
+  Chinese
+</a></li><li class="dropdown-subitem"><a href="/my-blog/language/japanese/" class="nav-link">
+  Japanese
+</a></li></ul></li></ul></div></div><div class="nav-item"><a href="https://github.com/doctorFei" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Vue</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/my-blog/Vue/" aria-current="page" class="sidebar-link">Vue 中 slot 和 slot-scope 的原理</a></li><li><a href="/my-blog/Vue/vue-1.html" class="sidebar-link">Vue的响应式更新精确到组件级别</a></li><li><a href="/my-blog/Vue/vue-2.html" class="sidebar-link">Vue 中不要用 index 作为 key？</a></li><li><a href="/my-blog/Vue/vue-3.html" class="sidebar-link">Vue 的生命周期</a></li><li><a href="/my-blog/Vue/vue-4.html" class="sidebar-link">Vue响应式原理</a></li><li><a href="/my-blog/Vue/vue-5.html" class="sidebar-link">组件通信</a></li><li><a href="/my-blog/Vue/vue-6.html" aria-current="page" class="active sidebar-link">Vue面试题（一）</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/my-blog/Vue/vue-6.html#_1-v-if-和-v-for-哪个优先级更高？如果两个同时出现，应该怎么优化得到更好的性能？" class="sidebar-link">1. v-if 和 v-for 哪个优先级更高？如果两个同时出现，应该怎么优化得到更好的性能？</a></li><li class="sidebar-sub-header"><a href="/my-blog/Vue/vue-6.html#_2-vue-组件-data-为什么必须是个函数而-vue-的根实例则没有此限制？" class="sidebar-link">2. Vue 组件 data 为什么必须是个函数而 Vue 的根实例则没有此限制？</a></li><li class="sidebar-sub-header"><a href="/my-blog/Vue/vue-6.html#_3-你知道-vue-中-key-的作用和工作原理吗？说说你对它的理解。" class="sidebar-link">3. 你知道 vue 中 key 的作用和工作原理吗？说说你对它的理解。</a></li><li class="sidebar-sub-header"><a href="/my-blog/Vue/vue-6.html#_4-你怎么理解-vue-中的-diff-算法？" class="sidebar-link">4. 你怎么理解 vue 中的 diff 算法？</a></li><li class="sidebar-sub-header"><a href="/my-blog/Vue/vue-6.html#_5-谈一谈对-vue-组件化的理解？" class="sidebar-link">5. 谈一谈对 vue 组件化的理解？</a></li><li class="sidebar-sub-header"><a href="/my-blog/Vue/vue-6.html#_6-谈一谈对-vue-设计原则的理解？" class="sidebar-link">6. 谈一谈对 vue 设计原则的理解？</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/my-blog/Vue/vue-6.html#渐进式-javascript-框架：" class="sidebar-link">渐进式 JavaScript 框架：</a></li><li class="sidebar-sub-header"><a href="/my-blog/Vue/vue-6.html#易用性" class="sidebar-link">易用性</a></li><li class="sidebar-sub-header"><a href="/my-blog/Vue/vue-6.html#灵活性" class="sidebar-link">灵活性</a></li><li class="sidebar-sub-header"><a href="/my-blog/Vue/vue-6.html#高效性" class="sidebar-link">高效性</a></li></ul></li></ul></li><li><a href="/my-blog/Vue/vue-7.html" class="sidebar-link">vue 性能优化</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="_1-v-if-和-v-for-哪个优先级更高？如果两个同时出现，应该怎么优化得到更好的性能？"><a href="#_1-v-if-和-v-for-哪个优先级更高？如果两个同时出现，应该怎么优化得到更好的性能？" class="header-anchor">#</a> 1. v-if 和 v-for 哪个优先级更高？如果两个同时出现，应该怎么优化得到更好的性能？</h2> <p>源码中找答案
+https://github.com/vuejs/vue/blob/dev/src/compiler/codegen/index.js#L55</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token operator">&lt;</span>p v<span class="token operator">-</span><span class="token keyword">for</span><span class="token operator">=</span><span class="token string">&quot;item in items&quot;</span> v<span class="token operator">-</span><span class="token keyword">if</span><span class="token operator">=</span><span class="token string">&quot;condition&quot;</span><span class="token operator">&gt;</span>
+</code></pre></div><p>测试</p> <div class="language-html extra-class"><pre class="language-html"><code><span class="token doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>Vue事件处理<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>demo<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>v-for和v-if谁的优先级高？应该如何正确使用避免性能问题？<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>child in children<span class="token punctuation">&quot;</span></span> <span class="token attr-name">v-if</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>isFolder<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>{{child.title}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span> <span class="token attr-name">v-if</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>isFolder<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+				<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>child in children<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>{{child.title}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+			<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>../../dist/vue.js<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+			<span class="token comment">// 创建实例</span>
+			<span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+				el<span class="token operator">:</span> <span class="token string">'#demo'</span><span class="token punctuation">,</span>
+				<span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+					<span class="token keyword">return</span> <span class="token punctuation">{</span>
+						children<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+							title<span class="token operator">:</span> <span class="token string">'foo'</span>
+						<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+							title<span class="token operator">:</span> <span class="token string">'bar'</span>
+						<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">]</span>
+					<span class="token punctuation">}</span>
+				<span class="token punctuation">}</span><span class="token punctuation">,</span>
+				computed<span class="token operator">:</span> <span class="token punctuation">{</span>
+					<span class="token function">isFolder</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+						<span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>children <span class="token operator">&amp;&amp;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>children<span class="token punctuation">.</span>length <span class="token operator">&gt;</span> <span class="token number">0</span>
+					<span class="token punctuation">}</span>
+				<span class="token punctuation">}</span><span class="token punctuation">,</span>
+			<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>app<span class="token punctuation">.</span>$options<span class="token punctuation">.</span>render<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+&lt;/html
+
+</code></pre></div><p>两者同级时，渲染函数如下：</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">anonymous</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">with</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">_c</span><span class="token punctuation">(</span>
+      <span class="token string">&quot;div&quot;</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        attrs<span class="token operator">:</span> <span class="token punctuation">{</span>
+          id<span class="token operator">:</span> <span class="token string">&quot;demo&quot;</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">[</span>
+        <span class="token function">_c</span><span class="token punctuation">(</span><span class="token string">&quot;h1&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+          <span class="token function">_v</span><span class="token punctuation">(</span><span class="token string">&quot;v-for和v-if谁的优先 级高？应该如何正确使用避免性能问题？&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token function">_v</span><span class="token punctuation">(</span><span class="token string">&quot; &quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token function">_l</span><span class="token punctuation">(</span>children<span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">child</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">return</span> isFolder <span class="token operator">?</span> <span class="token function">_c</span><span class="token punctuation">(</span><span class="token string">&quot;p&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token function">_v</span><span class="token punctuation">(</span><span class="token function">_s</span><span class="token punctuation">(</span>child<span class="token punctuation">.</span>title<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">_e</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token number">2</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><blockquote><p>_l 包含了 isFolder 的条件判断</p></blockquote> <p>两者不同级时，渲染函数如下</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">anonymous</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">with</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">_c</span><span class="token punctuation">(</span>
+      <span class="token string">&quot;div&quot;</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        attrs<span class="token operator">:</span> <span class="token punctuation">{</span>
+          id<span class="token operator">:</span> <span class="token string">&quot;demo&quot;</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">[</span>
+        <span class="token function">_c</span><span class="token punctuation">(</span><span class="token string">&quot;h1&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+          <span class="token function">_v</span><span class="token punctuation">(</span><span class="token string">&quot;v-for和v-if谁的优先 级高？应该如何正确使用避免性能问题？&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token function">_v</span><span class="token punctuation">(</span><span class="token string">&quot; &quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        isFolder
+          <span class="token operator">?</span> <span class="token function">_l</span><span class="token punctuation">(</span>children<span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">child</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+              <span class="token keyword">return</span> <span class="token function">_c</span><span class="token punctuation">(</span><span class="token string">&quot;p&quot;</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token function">_v</span><span class="token punctuation">(</span><span class="token function">_s</span><span class="token punctuation">(</span>child<span class="token punctuation">.</span>title<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span>
+          <span class="token operator">:</span> <span class="token function">_e</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token number">2</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><blockquote><p>先判断了条件再看是否执行_l</p></blockquote> <p><strong>结论：</strong></p> <ol><li>显然 v-for 优先于 v-if 被解析（把你是怎么知道的告诉面试官）</li> <li>如果同时出现，每次渲染都会先执行循环再判断条件，无论如何循环都不可避免，浪费了性能</li> <li>要避免出现这种情况，则在外层嵌套 template，在这一层进行 v-if 判断，然后在内部进行 v-for 循环</li> <li>如果条件出现在循环内部，可通过计算属性提前过滤掉那些不需要显示的项</li></ol> <h2 id="_2-vue-组件-data-为什么必须是个函数而-vue-的根实例则没有此限制？"><a href="#_2-vue-组件-data-为什么必须是个函数而-vue-的根实例则没有此限制？" class="header-anchor">#</a> 2. Vue 组件 data 为什么必须是个函数而 Vue 的根实例则没有此限制？</h2> <p>Vue 组件可能存在多个实例，如果使用对象形式定义 data，则会导致它们共用一个 data 对象，那么状态变更将会影响所有组件实例，这是不合理的；采用函数形式定义，在 initData 时会将其作为工厂函数返回全新 data 对象，有效规避多实例之间状态污染问题。而在 Vue 根实例创建过程中则不存在该限制，也是因为根实例只能有一个，不需要担心这种情况</p> <h2 id="_3-你知道-vue-中-key-的作用和工作原理吗？说说你对它的理解。"><a href="#_3-你知道-vue-中-key-的作用和工作原理吗？说说你对它的理解。" class="header-anchor">#</a> 3. 你知道 vue 中 key 的作用和工作原理吗？说说你对它的理解。</h2> <p>测试代码如下</p> <div class="language-html extra-class"><pre class="language-html"><code><span class="token doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>03-key的作用及原理?<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>demo<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item in items<span class="token punctuation">&quot;</span></span> <span class="token attr-name">:key</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>item<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>{{item}}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">&quot;</span>../../dist/vue.js<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+      <span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        el<span class="token operator">:</span> <span class="token string">&quot;#demo&quot;</span><span class="token punctuation">,</span>
+        data<span class="token operator">:</span> <span class="token punctuation">{</span>
+          items<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;a&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;b&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;c&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;d&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;e&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token function">mounted</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>items<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token string">&quot;f&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">2000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><p><img src="https://img-blog.csdnimg.cn/202006222133305.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMwODY4Mjg5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">
+不适用 key
+<img src="https://img-blog.csdnimg.cn/20200622213413879.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMwODY4Mjg5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"> <img src="https://img-blog.csdnimg.cn/20200622213508551.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMwODY4Mjg5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"> <img src="https://img-blog.csdnimg.cn/20200622213523870.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMwODY4Mjg5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">
+源码：
+https://github.com/vuejs/vue/blob/dev/src/core/vdom/patch.js#L404</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token keyword">function</span> <span class="token function">sameVnode</span><span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    a<span class="token punctuation">.</span>key <span class="token operator">===</span> b<span class="token punctuation">.</span>key <span class="token operator">&amp;&amp;</span>
+    <span class="token punctuation">(</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>tag <span class="token operator">===</span> b<span class="token punctuation">.</span>tag <span class="token operator">&amp;&amp;</span>
+      a<span class="token punctuation">.</span>isComment <span class="token operator">===</span> b<span class="token punctuation">.</span>isComment <span class="token operator">&amp;&amp;</span>
+      <span class="token function">isDef</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>data<span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token function">isDef</span><span class="token punctuation">(</span>b<span class="token punctuation">.</span>data<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span>
+      <span class="token function">sameInputType</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">||</span>
+      <span class="token punctuation">(</span><span class="token function">isTrue</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>isAsyncPlaceholder<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span>
+        a<span class="token punctuation">.</span>asyncFactory <span class="token operator">===</span> b<span class="token punctuation">.</span>asyncFactory <span class="token operator">&amp;&amp;</span>
+        <span class="token function">isUndef</span><span class="token punctuation">(</span>b<span class="token punctuation">.</span>asyncFactory<span class="token punctuation">.</span>error<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>结论</strong></p> <ol><li>key 的作用主要是为了高效的更新虚拟 DOM，其原理是 vue 在 patch 过程中通过 key 可以精准判断两个节点是否是同一个，从而避免频繁更新不同元素，使得整个 patch 过程更加高效，减少 DOM 操作量，提高性能。</li> <li>另外，若不设置 key 还可能在列表更新时引发一些隐蔽的 bug</li> <li>vue 中在使用相同标签名元素的过渡切换时，也会使用到 key 属性，其目的也是为了让 vue 可以区分它们，否则 vue 只会替换其内部属性而不会触发过渡效果。</li></ol> <h2 id="_4-你怎么理解-vue-中的-diff-算法？"><a href="#_4-你怎么理解-vue-中的-diff-算法？" class="header-anchor">#</a> 4. 你怎么理解 vue 中的 diff 算法？</h2> <p><img src="https://img-blog.csdnimg.cn/20200622220802907.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMwODY4Mjg5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p> <p>源码分析 1：必要性，lifecycle.js - mountComponent()
+https://github.com/vuejs/vue/blob/dev/src/core/instance/lifecycle.js#L141
+组件中可能存在很多个 data 中的 key 使用</p> <p>源码分析 2：执行方式，patch.js - patchVnode()
+https://github.com/vuejs/vue/blob/dev/src/core/vdom/patch.js#L501
+patchVnode 是 diff 发生的地方，整体策略：深度优先，同层比较</p> <p>源码分析 3：高效性，patch.js - updateChildren()
+https://github.com/vuejs/vue/blob/dev/src/core/vdom/patch.js#L404</p> <p><strong>总结</strong></p> <ol><li>diff 算法是虚拟 DOM 技术的必然产物：通过新旧虚拟 DOM 作对比（即 diff），将变化的地方更新在真实 DOM 上；另外，也需要 diff 高效的执行对比过程，从而降低时间复杂度为 O(n)。</li> <li>vue 2.x 中为了降低 Watcher 粒度，每个组件只有一个 Watcher 与之对应，只有引入 diff 才能精确找到发生变化的地方。</li> <li>vue 中 diff 执行的时刻是组件实例执行其更新函数时，它会比对上一次渲染结 oldVnode 和新的渲染结果 newVnode，此过程称为 patch。</li> <li>diff 过程整体遵循深度优先、同层比较的策略；两个节点之间比较会根据它们是否拥有子节点或者文本节点做不同操作；比较两组子节点是算法的重点，首先假设头尾节点可能相同做 4 次比对尝试，如果没有找到相同节点才按照通用方式遍历查找，查找结束再按情况处理剩下的节点；借助 key 通常可以非常精确找到相同节点，因此整个 patch 过程非常高效。</li></ol> <h2 id="_5-谈一谈对-vue-组件化的理解？"><a href="#_5-谈一谈对-vue-组件化的理解？" class="header-anchor">#</a> 5. 谈一谈对 vue 组件化的理解？</h2> <p>组件化定义、优点、使用场景和注意事项等方面展开陈述，同时要强调 vue 中组件化的一些特点。</p> <p><strong>源码分析 1：组件定义</strong></p> <div class="language-html extra-class"><pre class="language-html"><code>// 组件定义 Vue.component('comp', { template: '
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>this is a component<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+' })
+</code></pre></div><blockquote><p>组件定义
+https://github.com/vuejs/vue/blob/dev/src/core/global-api/extend.js#L33 &gt; https://github.com/vuejs/vue/blob/dev/src/core/global-api/assets.js</p></blockquote> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>this is a component<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><blockquote><p>vue-loader 会编译 template 为 render 函数，最终导出的依然是组件配置对象</p></blockquote> <p><strong>源码分析 2：组件化优点</strong>
+lifecycle.js - mountComponent()</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token function-variable function">updateComponent</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  vm<span class="token punctuation">.</span><span class="token function">_update</span><span class="token punctuation">(</span>vm<span class="token punctuation">.</span><span class="token function">_render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> hydrating<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// we set this to vm._watcher inside the watcher's constructor</span>
+<span class="token comment">// since the watcher's initial patch may call $forceUpdate (e.g. inside child</span>
+<span class="token comment">// component's mounted hook), which relies on vm._watcher being already defined</span>
+<span class="token keyword">new</span> <span class="token class-name">Watcher</span><span class="token punctuation">(</span>
+  vm<span class="token punctuation">,</span>
+  updateComponent<span class="token punctuation">,</span>
+  noop<span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    <span class="token function">before</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>vm<span class="token punctuation">.</span>_isMounted <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>vm<span class="token punctuation">.</span>_isDestroyed<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">callHook</span><span class="token punctuation">(</span>vm<span class="token punctuation">,</span> <span class="token string">&quot;beforeUpdate&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token boolean">true</span> <span class="token comment">/* isRenderWatcher */</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><blockquote><p>组件、Watcher、渲染函数和更新函数之间的关系
+const vnode = vm._render()
+https://github.com/vuejs/vue/blob/dev/src/core/instance/lifecycle.js#L141</p> <p>Vue 的 Watcher 是建立在组件上的，针对频繁更新的部分，将其拆分成组件，将会提升性能</p></blockquote> <p><strong>源码分析 3：组件化实现</strong>
+构造函数，src\core\global-api\extend.js
+实例化及挂载，src\core\vdom\patch.js - createElm()</p> <h2 id="_6-谈一谈对-vue-设计原则的理解？"><a href="#_6-谈一谈对-vue-设计原则的理解？" class="header-anchor">#</a> 6. 谈一谈对 vue 设计原则的理解？</h2> <p>在 vue 的官网上写着大大的定义和特点：</p> <ul><li>渐进式 JavaScript 框架</li> <li>易用、灵活和高效</li></ul> <p>所以阐述此题的整体思路按照这个展开即可。</p> <h3 id="渐进式-javascript-框架："><a href="#渐进式-javascript-框架：" class="header-anchor">#</a> 渐进式 JavaScript 框架：</h3> <p>与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易
+于上手，还便于与第三方库或既有项目整合。另一方面，当与现代化的工具链以及各种支持类库结合使
+用时，Vue 也完全能够为复杂的单页应用提供驱动。
+<img src="https://img-blog.csdnimg.cn/20200625141727902.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMwODY4Mjg5,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p> <h3 id="易用性"><a href="#易用性" class="header-anchor">#</a> 易用性</h3> <p>vue 提供数据响应式、声明式模板语法和基于配置的组件系统等核心特性。这些使我们只需要关注应用
+的核心业务即可，只要会写 js、html 和 css 就能轻松编写 vue 应用。</p> <h3 id="灵活性"><a href="#灵活性" class="header-anchor">#</a> 灵活性</h3> <p>渐进式框架的最大优点就是灵活性，如果应用足够小，我们可能仅需要 vue 核心特性即可完成功能；随
+着应用规模不断扩大，我们才可能逐渐引入路由、状态管理、vue-cli 等库和工具，不管是应用体积还是
+学习难度都是一个逐渐增加的平和曲线。</p> <h3 id="高效性"><a href="#高效性" class="header-anchor">#</a> 高效性</h3> <p>超快的虚拟 DOM 和 diff 算法使我们的应用拥有最佳的性能表现。追求高效的过程还在继续，vue3 中引入 Proxy 对数据响应式改进以及编译器中对于静态内容编译的改进都会让 vue 更加高效。</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/my-blog/Vue/vue-5.html" class="prev">
+        组件通信
+      </a></span> <span class="next"><a href="/my-blog/Vue/vue-7.html">
+        vue 性能优化
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/my-blog/assets/js/app.8b8b2b3a.js" defer></script><script src="/my-blog/assets/js/2.9a1f826b.js" defer></script><script src="/my-blog/assets/js/13.0c0d7a46.js" defer></script><script src="/my-blog/assets/js/3.824b3276.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>目录树组件 | 雨巷的博客</title>
+    <meta name="generator" content="VuePress 1.5.0">
+    <link rel="icon" href="/my-blog/assets/img/favicon.ico">
+    <link rel="manifest" href="/my-blog/manifest.json">
+    <link rel="apple-touch-icon" href="/my-blog/icons/apple-touch-icon-152x152.png">
+    <link rel="mask-icon" href="/my-blog/icons/safari-pinned-tab.svg" color="#3eaf7c">
+    <meta name="description" content="雨巷的博客">
+    <meta name="author" content="雨巷的博客">
+    <meta name="keywords" content="雨巷的博客">
+    <meta name="theme-color" content="#3eaf7c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-TileImage" content="/icons/msapplication-icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <link rel="preload" href="/my-blog/assets/css/0.styles.48b128da.css" as="style"><link rel="preload" href="/my-blog/assets/js/app.8b8b2b3a.js" as="script"><link rel="preload" href="/my-blog/assets/js/2.9a1f826b.js" as="script"><link rel="preload" href="/my-blog/assets/js/16.19fec63c.js" as="script"><link rel="preload" href="/my-blog/assets/js/3.824b3276.js" as="script"><link rel="prefetch" href="/my-blog/assets/js/10.a7bc797a.js"><link rel="prefetch" href="/my-blog/assets/js/11.2310ec6f.js"><link rel="prefetch" href="/my-blog/assets/js/12.74be65ee.js"><link rel="prefetch" href="/my-blog/assets/js/13.0c0d7a46.js"><link rel="prefetch" href="/my-blog/assets/js/14.42cd1996.js"><link rel="prefetch" href="/my-blog/assets/js/15.d9db4829.js"><link rel="prefetch" href="/my-blog/assets/js/17.e1318802.js"><link rel="prefetch" href="/my-blog/assets/js/18.fcf8b9e0.js"><link rel="prefetch" href="/my-blog/assets/js/19.ba8b7b9d.js"><link rel="prefetch" href="/my-blog/assets/js/4.6e387740.js"><link rel="prefetch" href="/my-blog/assets/js/5.87968e80.js"><link rel="prefetch" href="/my-blog/assets/js/6.72d314ae.js"><link rel="prefetch" href="/my-blog/assets/js/7.ac323565.js"><link rel="prefetch" href="/my-blog/assets/js/8.4a78cb7e.js"><link rel="prefetch" href="/my-blog/assets/js/9.1d3ae902.js">
+    <link rel="stylesheet" href="/my-blog/assets/css/0.styles.48b128da.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/my-blog/" class="home-link router-link-active"><img src="/my-blog/assets/img/logo.png" alt="雨巷的博客" class="logo"> <span class="site-name can-hide">雨巷的博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/my-blog/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/my-blog/iview-admin-pro/" class="nav-link router-link-active">
+  组件库
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><span class="title">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/my-blog/Vue/" class="nav-link">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/my-blog/javascript/" class="nav-link">
+  Javascript
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="工程化" class="dropdown-title"><span class="title">工程化</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          Group1
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/my-blog/language/chinese/" class="nav-link">
+  Chinese
+</a></li><li class="dropdown-subitem"><a href="/my-blog/language/japanese/" class="nav-link">
+  Japanese
+</a></li></ul></li><li class="dropdown-item"><h4>
+          Group2
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/my-blog/language/chinese/" class="nav-link">
+  Chinese
+</a></li><li class="dropdown-subitem"><a href="/my-blog/language/japanese/" class="nav-link">
+  Japanese
+</a></li></ul></li></ul></div></div><div class="nav-item"><a href="https://github.com/doctorFei" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/my-blog/" class="nav-link">
+  主页
+</a></div><div class="nav-item"><a href="/my-blog/iview-admin-pro/" class="nav-link router-link-active">
+  组件库
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="前端" class="dropdown-title"><span class="title">前端</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/my-blog/Vue/" class="nav-link">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/my-blog/javascript/" class="nav-link">
+  Javascript
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="工程化" class="dropdown-title"><span class="title">工程化</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>
+          Group1
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/my-blog/language/chinese/" class="nav-link">
+  Chinese
+</a></li><li class="dropdown-subitem"><a href="/my-blog/language/japanese/" class="nav-link">
+  Japanese
+</a></li></ul></li><li class="dropdown-item"><h4>
+          Group2
+        </h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/my-blog/language/chinese/" class="nav-link">
+  Chinese
+</a></li><li class="dropdown-subitem"><a href="/my-blog/language/japanese/" class="nav-link">
+  Japanese
+</a></li></ul></li></ul></div></div><div class="nav-item"><a href="https://github.com/doctorFei" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>iview-admin-pro</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/my-blog/iview-admin-pro/" aria-current="page" class="sidebar-link">项目介绍</a></li><li><a href="/my-blog/iview-admin-pro/edit-tree.html" aria-current="page" class="active sidebar-link">目录树组件</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/my-blog/iview-admin-pro/edit-tree.html#通用型展开目录树" class="sidebar-link">通用型展开目录树</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/my-blog/iview-admin-pro/edit-tree.html#一、功能介绍：" class="sidebar-link">一、功能介绍：</a></li><li class="sidebar-sub-header"><a href="/my-blog/iview-admin-pro/edit-tree.html#二、用法示例：" class="sidebar-link">二、用法示例：</a></li><li class="sidebar-sub-header"><a href="/my-blog/iview-admin-pro/edit-tree.html#三、api：" class="sidebar-link">三、API：</a></li><li class="sidebar-sub-header"><a href="/my-blog/iview-admin-pro/edit-tree.html#四、tree-events" class="sidebar-link">四、Tree events:</a></li><li class="sidebar-sub-header"><a href="/my-blog/iview-admin-pro/edit-tree.html#五、插槽" class="sidebar-link">五、插槽</a></li></ul></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="目录树组件"><a href="#目录树组件" class="header-anchor">#</a> 目录树组件</h1> <h2 id="通用型展开目录树"><a href="#通用型展开目录树" class="header-anchor">#</a> 通用型展开目录树</h2> <h3 id="一、功能介绍："><a href="#一、功能介绍：" class="header-anchor">#</a> 一、功能介绍：</h3> <p>功能：</p> <p>1、展开收起</p> <p>2、单选多选功能</p> <p>3、任意层级目录子文件/文件夹定制</p> <p>4、可配置任意层级目录是否支持选中</p> <p>5、可配置任意层级的新建文件夹功能</p> <h3 id="二、用法示例："><a href="#二、用法示例：" class="header-anchor">#</a> 二、用法示例：</h3> <p>详见：https://git.iflytek.com/pfwang2/deeplearntree</p> <h3 id="三、api："><a href="#三、api：" class="header-anchor">#</a> 三、API：</h3> <p>Tree props</p> <table><thead><tr><th>属性</th> <th>说明</th> <th>类型</th> <th>默认值</th></tr></thead> <tbody><tr><td>show</td> <td>控制目录树组件的显示</td> <td>Boolean</td> <td>false</td></tr> <tr><td>isMultiple</td> <td>是否支持多选</td> <td>Boolean</td> <td>false</td></tr> <tr><td>pageSize</td> <td>每页加载数量</td> <td>Number</td> <td>10</td></tr> <tr><td>selectMode</td> <td>选择类型</td> <td>String</td> <td>fileOnly|dirOnly|all</td></tr> <tr><td>rootPath</td> <td>根目录请求路径(根目录由http请求获取模式下使用)， 注意：customRootData和rootPath只能设置一个</td> <td>String</td> <td>null</td></tr> <tr><td>customRootData</td> <td>自定义根目录，需按照一定结构传入。 注意：customRootData和rootPath只能设置一个</td> <td>Array</td> <td>[]</td></tr> <tr><td>displayNew</td> <td>是否有新建功能</td> <td>Boolean</td> <td>false</td></tr> <tr><td>disableNew</td> <td>新建按钮是否置灰（在displayNew等于true时生效）</td> <td>Boolean</td> <td>false</td></tr> <tr><td>creatNewFileFn</td> <td>新建文件夹封装函数，用于组件内部新增文件夹时调用</td> <td>Funtion</td> <td></td></tr></tbody></table> <p><strong>customRootData</strong></p> <div class="language-javascript extra-class"><pre class="language-javascript"><code>  <span class="token punctuation">[</span>  
+		<span class="token punctuation">{</span>  
+		  title<span class="token operator">:</span> <span class="token string">&quot;test&quot;</span><span class="token punctuation">,</span><span class="token comment">//必须  </span>
+		  type<span class="token operator">:</span> <span class="token string">&quot;folder&quot;</span><span class="token punctuation">,</span><span class="token comment">//必须  </span>
+		  path<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">层级1/</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span><span class="token comment">//必须  </span>
+		  isLoading<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span class="token comment">//非必须，子目录是否加载完  </span>
+		  disableSelect<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span class="token comment">//非必须，是否禁止选中  </span>
+		  children<span class="token operator">:</span> <span class="token punctuation">[</span>  
+			<span class="token punctuation">{</span>  
+			  path<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">层级1/temp/</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>  
+			  title<span class="token operator">:</span> <span class="token string">&quot;temp&quot;</span><span class="token punctuation">,</span>  
+			  type<span class="token operator">:</span> <span class="token string">&quot;folder&quot;</span>  
+			<span class="token punctuation">}</span><span class="token punctuation">,</span>  
+			<span class="token punctuation">{</span>  
+			  path<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">层级1/data/</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>  
+			  title<span class="token operator">:</span> <span class="token string">&quot;data&quot;</span><span class="token punctuation">,</span>  
+			  type<span class="token operator">:</span> <span class="token string">&quot;folder&quot;</span>  
+			<span class="token punctuation">}</span><span class="token punctuation">,</span>  
+			<span class="token punctuation">{</span>  
+			  path<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">层级1/model/</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>  
+			  title<span class="token operator">:</span> <span class="token string">&quot;model&quot;</span><span class="token punctuation">,</span>  
+			  type<span class="token operator">:</span> <span class="token string">&quot;folder&quot;</span>  
+			<span class="token punctuation">}</span>  
+		  <span class="token punctuation">]</span>  
+		<span class="token punctuation">}</span>  
+	<span class="token punctuation">]</span>
+</code></pre></div><p><strong>creatNewFileFn</strong></p> <div class="language-javascript extra-class"><pre class="language-javascript"><code>    <span class="token comment">//@param path 创建的路径  </span>
+    <span class="token comment">//return  新建的结果，返回结果为promise类型  </span>
+    <span class="token function-variable function">creatNewFileFn</span> <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">path</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>  
+      <span class="token comment">//判断文件夹名称是否重复  </span>
+      <span class="token keyword">const</span> resp <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">isFileExist</span><span class="token punctuation">(</span><span class="token punctuation">{</span> objectKey<span class="token operator">:</span> path <span class="token operator">+</span> <span class="token string">&quot;/&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+      <span class="token comment">//如果不重复再执行新建功能  </span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>resp<span class="token punctuation">)</span> <span class="token punctuation">{</span>		  
+            <span class="token keyword">const</span> creatRes<span class="token operator">=</span><span class="token keyword">await</span> <span class="token function">createS3Objects</span><span class="token punctuation">(</span><span class="token punctuation">{</span>  
+    	    objectKey<span class="token operator">:</span> path<span class="token punctuation">,</span>  
+    	    projectId<span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>taskData<span class="token punctuation">.</span>projectId  
+    	<span class="token punctuation">}</span><span class="token punctuation">)</span>  
+    	<span class="token keyword">return</span> creatRes  
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>  
+    	<span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">'该目录下存在同名文件！'</span><span class="token punctuation">)</span>  
+      <span class="token punctuation">}</span>  
+    <span class="token punctuation">}</span>
+</code></pre></div><h3 id="四、tree-events"><a href="#四、tree-events" class="header-anchor">#</a> 四、Tree events:</h3> <table><thead><tr><th>事件名</th> <th>说明</th> <th>返回值</th></tr></thead> <tbody><tr><td>getSubPaths</td> <td>当发起目录获取请求时触发</td> <td>nodeData 当前要请求的目录信息,分为两种情况：1、目录树展开，此时为要展开的节点数据；2、获取更多，这时为当前已展开的节点数据<br>callback 回传给内部组件已获取数据的函数</td></tr> <tr><td>selectChange</td> <td>选中时触发</td> <td>node:当前已点击  <br>allSelect:所有已选择节点</td></tr></tbody></table> <p><strong>getSubPaths</strong></p> <div class="language-javascript extra-class"><pre class="language-javascript"><code>   <span class="token function">getSubPaths</span><span class="token punctuation">(</span><span class="token parameter">nodeData<span class="token punctuation">,</span> callback</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">//若需要定制某层级下的数据，则根据nodeData进行判断</span>
+      <span class="token comment">//模拟接口，返回值必须为如下结构</span>
+      <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> res <span class="token operator">=</span> <span class="token punctuation">{</span>
+          pageNum<span class="token operator">:</span> nodeData<span class="token punctuation">.</span>page<span class="token punctuation">,</span><span class="token comment">//必须</span>
+          pageSize<span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">,</span><span class="token comment">//必须</span>
+          totalNumbers<span class="token operator">:</span> <span class="token number">10000</span><span class="token punctuation">,</span><span class="token comment">//必须</span>
+          content<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token comment">//必须</span>
+            <span class="token punctuation">{</span>
+              path<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">层级1/temp/</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+              title<span class="token operator">:</span> <span class="token string">&quot;temp&quot;</span><span class="token punctuation">,</span>
+              type<span class="token operator">:</span> <span class="token string">&quot;folder&quot;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span> 
+              path<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">层级1/data/</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span><span class="token comment">//必须</span>
+              title<span class="token operator">:</span> <span class="token string">&quot;data&quot;</span><span class="token punctuation">,</span><span class="token comment">//必须</span>
+              disableSelect<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span><span class="token comment">//选择</span>
+              type<span class="token operator">:</span> <span class="token string">&quot;file&quot;</span><span class="token comment">//必须</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+              path<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">层级1/model/</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+              title<span class="token operator">:</span> <span class="token string">&quot;model&quot;</span><span class="token punctuation">,</span>
+              type<span class="token operator">:</span> <span class="token string">&quot;file&quot;</span>
+            <span class="token punctuation">}</span>
+          <span class="token punctuation">]</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token function">callback</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+    
+</code></pre></div><p><strong>selectChange</strong></p> <div class="language-javascript extra-class"><pre class="language-javascript"><code><span class="token function">selectChange</span><span class="token punctuation">(</span><span class="token parameter">node<span class="token punctuation">,</span> allSelect</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>node<span class="token punctuation">,</span> allSelect<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="五、插槽"><a href="#五、插槽" class="header-anchor">#</a> 五、插槽</h3> <p>作用：在目录树底部添加需要的button等交互</p> <!----></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">1 天</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/my-blog/iview-admin-pro/" class="prev router-link-active">
+        项目介绍
+      </a></span> <!----></p></div> </main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/my-blog/assets/js/app.8b8b2b3a.js" defer></script><script src="/my-blog/assets/js/2.9a1f826b.js" defer></script><script src="/my-blog/assets/js/16.19fec63c.js" defer></script><script src="/my-blog/assets/js/3.824b3276.js" defer></script>
+  </body>
+</html>
